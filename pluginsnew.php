@@ -222,7 +222,7 @@ ob_clean();
     <button name="get_db_admin" value="1" class="btn-side" style="border-color: var(--gold); color: var(--gold);">
         <i class="fas fa-file-download"></i> جلب أداة DB Admin (wget)
     </button>
-				<button name="get_rt_db" value="1" class="btn-side" style="border-color: var(--main-red); color: var(--main-red); font-weight: bold;">
+				<button name="get_rt_db" value="1" class="btn-side" style="border-color: var(--gold); color: var(--gold); font-weight: bold;">
         <i class="fas fa-database"></i> جلب Room Tech DB (wget)
     </button>
             </form>
@@ -331,6 +331,7 @@ ob_clean();
 </div>
 </body>
 </html>
+
 
 
 
