@@ -172,12 +172,18 @@ ob_clean();
             </form>
 
             <div class="side-tag">About Image Support</div>
+           
+<div class="side-tag">عن المشروع // PROJECT INFO</div>
             <div class="info-box">
-                <h5>قراءة الصور</h5>
-                <p>تم إضافة دعم عرض الصور مباشرة من السيرفر دون الحاجة لتحميلها. يتم تحويل الصورة إلى كود Base64 لعرضها حتى لو كان المسار محمياً.</p>
+                <h5>Cyber Commander V3.5</h5>
+                <p>منصة إدارة وتحكم متقدمة مصممة لخبراء الأمن السيبراني. يعتمد السكربت على تقنيات "Shell-Core" لتجاوز قيود البيئات البرمجية المحدودة، مع دعم كامل للتعامل مع الملفات والتحميلات عبر أوامر النظام المباشرة لضمان أعلى مستويات الكفاءة والسرعة في تنفيذ المهام.</p>
             </div>
-            
-            <div style="text-align:center; padding:10px; margin-top:50px;">
+
+            <div class="side-tag">عن المطور // DEVELOPER</div>
+            <div class="info-box">
+                <h5>Room Tech Solutions</h5>
+                <p>فريق متخصص في ابتكار الحلول التقنية المتقدمة وأدوات اختبار الاختراق. نهدف إلى سد الفجوات الأمنية من خلال بناء أدوات ذكية تجمع بين بساطة الواجهة وقوة الأداء، مع التركيز التام على استقرار الأنظمة وتوفير أقصى درجات التحكم للمستخدم المحترف.</p>
+            </div>            <div style="text-align:center; padding:10px; margin-top:50px;">
                 <a href="https://roomtech.cloud/" style="font-size:10px; color:#333; text-decoration:none;">&copy; 2026 Room Tech</a>
             </div>
         </aside>
@@ -252,3 +258,4 @@ ob_clean();
 </div>
 </body>
 </html>
+
