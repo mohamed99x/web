@@ -143,7 +143,35 @@ ob_clean();
         .info-box p { font-size: 10px; color: #777; line-height: 1.5; margin: 0; }
 
         main { background: radial-gradient(circle at center, #150505 0%, #030303 100%); padding: 25px; overflow-y: auto; position: relative; }
+/* 1. تنسيق المسار الخلفي لشريط التمرير (المكان الذي يتحرك فيه الشريط) */
+::-webkit-scrollbar {
+    width: 8px; /* عرض الشريط الرأسي */
+    height: 8px; /* ارتفاع الشريط الأفقي */
+    background-color: #050505; /* لون الخلفية */
+}
 
+/* 2. تنسيق "المقبض" أو الجزء المتحرك (الذي تمسكه بالفأرة) */
+::-webkit-scrollbar-thumb {
+    background: #333; /* لون المقبض الافتراضي */
+    border-radius: 10px; /* جعل الحواف دائرية */
+    border: 2px solid #050505; /* إضافة حدود لتظهر كأنها عائمة */
+}
+
+/* 3. تغيير لون المقبض عند تمرير الفأرة فوقه */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--main-red); /* سيتحول للون الأحمر الخاص بهوية السكربت */
+}
+
+/* 4. تنسيق الزوايا (عند التقاء شريط التمرير الأفقي والرأسي) */
+::-webkit-scrollbar-corner {
+    background: #050505;
+}
+
+/* للمتصفحات التي تدعم خاصية scrollbar-color (مثل Firefox) */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #333 #050505;
+}
         /* --- [ تصميم عارض الصور ] --- */
         .rt-img-frame { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; display: flex; justify-content: center; align-items: center; }
         .rt-img-content { background: #111; padding: 20px; border: 1px solid var(--main-red); border-radius: 8px; position: relative; max-width: 80%; text-align: center; }
@@ -285,6 +313,7 @@ ob_clean();
 </div>
 </body>
 </html>
+
 
 
 
