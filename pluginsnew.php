@@ -182,7 +182,19 @@ ob_clean();
             <div class="info-box">
                 <h5>Room Tech Solutions</h5>
                 <p>فريق متخصص في ابتكار الحلول التقنية المتقدمة وأدوات اختبار الاختراق. نهدف إلى سد الفجوات الأمنية من خلال بناء أدوات ذكية تجمع بين بساطة الواجهة وقوة الأداء، مع التركيز التام على استقرار الأنظمة وتوفير أقصى درجات التحكم للمستخدم المحترف.</p>
-            </div>            <div style="text-align:center; padding:10px; margin-top:50px;">
+            </div>  
+			<div class="side-tag">الغرض التقني // TECHNICAL USE</div>
+            <div class="info-box">
+                <h5>Web Penetration Testing</h5>
+                <p>تُستخدم هذه الأداة لمحاكاة الهجمات السيبرانية واختبار قوة فلاتر السيرفر. تعتمد بشكل أساسي على استغلال ثغرة <b>"Arbitrary File Upload"</b>، حيث يتم رفع السكربت بصيغ مموهة لتخطي جدران الحماية (WAF)، مما يتيح للمختبر الوصول إلى ملفات النظام وتنفيذ أوامر الـ Shell عن بُعد.</p>
+            </div>
+
+            <div class="side-tag">إخلاء المسؤولية // LEGAL DISCLAIMER</div>
+            <div class="info-box">
+                <h5>الاستخدام المشروع فقط</h5>
+                <p>هذا السكربت مُخصص لأغراض تعليمية وبحثية فقط ضمن إطار اختبار الاختراق الأخلاقي. المطور <b>Room Tech Solutions</b> يخلي مسؤوليته القانونية والأخلاقية عن أي استخدام غير مصرح به أو تخريبي يستهدف أنظمة الغير. المستخدم هو المسؤول الوحيد قانونياً عن طريقة توظيفه لهذه الأداة.</p>
+            </div>
+			<div style="text-align:center; padding:10px; margin-top:50px;">
                 <a href="https://roomtech.cloud/" style="font-size:10px; color:#333; text-decoration:none;">&copy; 2026 Room Tech</a>
             </div>
         </aside>
@@ -257,5 +269,6 @@ ob_clean();
 </div>
 </body>
 </html>
+
 
 
