@@ -171,7 +171,6 @@ ob_clean();
                 <button class="btn-side" style="background:var(--main-red); color:#fff; text-align:center;">UPLOAD NOW</button>
             </form>
 
-            <div class="side-tag">About Image Support</div>
            
 <div class="side-tag">عن المشروع // PROJECT INFO</div>
             <div class="info-box">
@@ -258,4 +257,5 @@ ob_clean();
 </div>
 </body>
 </html>
+
 
