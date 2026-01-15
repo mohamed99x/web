@@ -144,88 +144,57 @@ ob_clean();
 html, body, a, button, input, textarea {
     cursor: none !important;
 }
+/* إخفاء الماوس الأصلي */
+html, body {
+    cursor: none !important;
+}
 
-/* 2. التنسيقات المشتركة */
+/* تأكد أن الروابط والأزرار لا تظهر مؤشر اليد القديم */
+a, button, input, textarea {
+    cursor: none !important;
+}
+
 #hacker-cursor, #hacker-follower {
     position: fixed;
     top: 0;
     left: 0;
     pointer-events: none;
-    z-index: 99999999;
-    opacity: 0; /* يظهر بواسطة الجافاسكريبت */
+    z-index: 99999999; /* قيمة ضخمة لتجاوز كل طبقات الواجهة */
+    border-radius: 50%;
+    opacity: 0;
     transition: opacity 0.3s ease;
 }
 
-/* 3. تصميم النقطة المركزية (شكل ماسي Diamond) */
 #hacker-cursor {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
     background-color: #ff0000;
-    /* تدوير المربع 45 درجة ليصبح ماسي */
-    transform: rotate(45deg); 
-    box-shadow: 0 0 10px #ff0000;
+    box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
 }
 
-/* 4. تصميم الملاحق (مربع رادار دوار) */
 #hacker-follower {
-    width: 50px;
-    height: 50px;
-    background: transparent;
-    /* حدود متقطعة لتعطي شكل تقني */
-    border: 1px dashed rgba(255, 0, 0, 0.6); 
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
-    /* تدوير المربع ليعطي حركة */
-    animation: rotateHUD 4s linear infinite; 
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ff0000;
+    background-color: rgba(255, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+    /* إضافة علامة "+" في السنتر لزيادة الاحترافية */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/* زوايا إضافية للمربع لزيادة الاحترافية */
-#hacker-follower::before, #hacker-follower::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border: 2px solid #ff0000;
-    /* هذا يجعل الحدود تظهر في الزوايا فقط */
-    clip-path: polygon(
-        0 10px, 0 0, 10px 0, 
-        100% 0, 100% 10px, 
-        100% 100%, 90% 100%, 
-        10px 100%, 0 100%
-    );
-    opacity: 0.5;
+#hacker-follower::after {
+    content: '+';
+    color: rgba(255, 0, 0, 0.5);
+    font-size: 14px;
 }
 
-/* جعل الزوايا تظهر بشكل مقطع (Corners Only) */
-#hacker-follower::before {
-    width: 60%; 
-    height: 60%;
-    border: 1px solid #ff0000;
-    clip-path: none;
-    border-radius: 0;
-    opacity: 0.2;
-}
-
-/* 5. أنيميشن الدوران */
-@keyframes rotateHUD {
-    0% { transform: translate3d(-25px, -25px, 0) rotate(0deg); }
-    100% { transform: translate3d(-25px, -25px, 0) rotate(360deg); }
-}
-
-/* ملاحظة هامة: في الجافاسكريبت، نحن نستخدم translate3d للتحريك.
-   لذلك يجب تعديل الأنيميشن ليتوافق معه أو نعتمد على حركة الجافاسكريبت فقط.
-   
-   الحل الأفضل لضمان عمل الجافاسكريبت مع الـ CSS الجديد هو تعديل بسيط في 
-   تأثير الضغط أدناه ليتماشى مع الدوران.
-*/
-
-/* 6. تأثير الضغط (Lock Target) */
+/* تأثير عند الضغط */
 .cursor-active {
+    transform: scale(0.7) !important;
     background-color: #fff !important;
-    box-shadow: 0 0 30px #ff0000 !important;
-    transform: rotate(225deg) scale(1.5) !important; /* دوران سريع عند الضغط */
+    box-shadow: 0 0 20px #fff !important;
 }
         :root { --main-red: #ff0000; --bg: #030303; --panel: #0d0d0d; --green: #00ff41; --gold: #ffd700; }
         
@@ -418,9 +387,7 @@ function animate() {
     cursor.style.transform = `translate3d(${mouseX - 5}px, ${mouseY - 5}px, 0)`;
 // زدنا القيمة لـ -25 لأن حجم المربع أصبح 50px (نصفه 25)
 // وأضفنا rotate ليعمل مع الأنيميشن
-const angle = (Date.now() / 20) % 360; // حساب زاوية دوران بناء على الوقت
-follower.style.transform = `translate3d(${followerX - 25}px, ${followerY - 25}px, 0) rotate(${angle}deg)`;
-    requestAnimationFrame(animate);
+follower.style.transform = `translate3d(${followerX - 20}px, ${followerY - 20}px, 0)`;    requestAnimationFrame(animate);
 }
 
 // بدء حلقة التحريك
@@ -432,6 +399,7 @@ document.addEventListener('mouseup', () => cursor.classList.remove('cursor-activ
 	</script>
 </body>
 </html>
+
 
 
 
