@@ -141,52 +141,42 @@ ob_clean();
 		/* إخفاء الماوس الأصلي */
 
 
-/* النقطة الحمراء المركزية */
-.cursor {
-    width: 8px;
-    height: 8px;
-    background-color: #ff0000;
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
-    will-change: transform;
+/* إخفاء الماوس الأصلي */
+html, body {
+    cursor: none !important;
 }
 
-/* الدائرة الملاحقة (الرادار) */
-.cursor-follower {
+#hacker-cursor, #hacker-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 999999; /* أعلى قيمة ممكنة لضمان الظهور فوق الكل */
+    border-radius: 50%;
+    opacity: 0; /* سنظهره بالجافا سكريبت عند أول حركة */
+    transition: opacity 0.3s ease;
+}
+
+#hacker-cursor {
+    width: 10px;
+    height: 10px;
+    background-color: #ff0000;
+    box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+}
+
+#hacker-follower {
     width: 40px;
     height: 40px;
     border: 1px solid #ff0000;
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9998;
-    background-color: rgba(255, 0, 0, 0.05);
-    box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    will-change: transform;
+    background-color: rgba(255, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
 }
-
-/* خطوط الملاحقة داخل الدائرة */
-.cursor-follower::before, .cursor-follower::after {
-    content: '';
-    position: absolute;
-    background-color: rgba(255, 0, 0, 0.3);
-}
-.cursor-follower::before { width: 100%; height: 1px; }
-.cursor-follower::after { width: 1px; height: 100%; }
 
 /* تأثير عند الضغط */
-.cursor.active {
-    transform: scale(2) !important;
-    background-color: #ffffff;
-    box-shadow: 0 0 20px #ffffff;
-}
-        :root { --main-red: #ff0000; --bg: #030303; --panel: #0d0d0d; --green: #00ff41; --gold: #ffd700; }
+.cursor-active {
+    transform: scale(1.5) !important;
+    background-color: #fff !important;
+}        :root { --main-red: #ff0000; --bg: #030303; --panel: #0d0d0d; --green: #00ff41; --gold: #ffd700; }
         
         html, body { height: 100%; margin: 0; padding: 0; overflow: hidden; background: var(--bg); color: #e0e0e0; font-family: 'Fira Code', 'Inter', monospace; }
         .app-shell { display: flex; flex-direction: column; height: 100vh; width: 100vw; position: fixed; top: 0; left: 0; z-index: 9999; }
@@ -230,8 +220,6 @@ ob_clean();
     </style>
 </head>
 <body>
-<div class="cursor"></div>
-<div class="cursor-follower"></div>
 <div class="app-shell">
     <header>
         <div class="logo">ROOM TECH // <span>CYBER COMMANDER</span></div>
@@ -352,27 +340,33 @@ ob_clean();
         </main>
     </div>
 </div>
+	<div id="hacker-cursor"></div>
+<div id="hacker-follower"></div>
 	<script>
-
-		const cursor = document.querySelector('.cursor');
-const follower = document.querySelector('.cursor-follower');
+const cursor = document.getElementById('hacker-cursor');
+const follower = document.getElementById('hacker-follower');
 
 document.addEventListener('mousemove', (e) => {
     const x = e.clientX;
     const y = e.clientY;
 
-    // استخدام requestAnimationFrame لأداء أفضل وسلاسة عالية
-    window.requestAnimationFrame(() => {
-        cursor.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+    // إظهار الماوس عند أول حركة
+    cursor.style.opacity = "1";
+    follower.style.opacity = "1";
+
+    // التحريك باستخدام translate3d للأداء العالي
+    cursor.style.transform = `translate3d(${x - 5}px, ${y - 5}px, 0)`;
+    
+    // الدائرة تتبع بتأخير بسيط جداً لسلاسة الحركة
+    setTimeout(() => {
         follower.style.transform = `translate3d(${x - 20}px, ${y - 20}px, 0)`;
-    });
+    }, 40);
 });
 
-document.addEventListener('mousedown', () => cursor.classList.add('active'));
-document.addEventListener('mouseup', () => cursor.classList.remove('active'));
 	</script>
 </body>
 </html>
+
 
 
 
