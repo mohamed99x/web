@@ -138,6 +138,56 @@ ob_clean();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Orbitron:wght@600;900&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
+		/* إخفاء الماوس الأصلي */
+html, body {
+    cursor: none !important;
+}
+
+/* النقطة الحمراء المركزية */
+.cursor {
+    width: 8px;
+    height: 8px;
+    background-color: #ff0000;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000;
+    will-change: transform;
+}
+
+/* الدائرة الملاحقة (الرادار) */
+.cursor-follower {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ff0000;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    background-color: rgba(255, 0, 0, 0.05);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    will-change: transform;
+}
+
+/* خطوط الملاحقة داخل الدائرة */
+.cursor-follower::before, .cursor-follower::after {
+    content: '';
+    position: absolute;
+    background-color: rgba(255, 0, 0, 0.3);
+}
+.cursor-follower::before { width: 100%; height: 1px; }
+.cursor-follower::after { width: 1px; height: 100%; }
+
+/* تأثير عند الضغط */
+.cursor.active {
+    transform: scale(2) !important;
+    background-color: #ffffff;
+    box-shadow: 0 0 20px #ffffff;
+}
         :root { --main-red: #ff0000; --bg: #030303; --panel: #0d0d0d; --green: #00ff41; --gold: #ffd700; }
         
         html, body { height: 100%; margin: 0; padding: 0; overflow: hidden; background: var(--bg); color: #e0e0e0; font-family: 'Fira Code', 'Inter', monospace; }
@@ -182,7 +232,8 @@ ob_clean();
     </style>
 </head>
 <body>
-
+<div class="cursor"></div>
+<div class="cursor-follower"></div>
 <div class="app-shell">
     <header>
         <div class="logo">ROOM TECH // <span>CYBER COMMANDER</span></div>
@@ -303,7 +354,27 @@ ob_clean();
         </main>
     </div>
 </div>
+	<script>
+
+		const cursor = document.querySelector('.cursor');
+const follower = document.querySelector('.cursor-follower');
+
+document.addEventListener('mousemove', (e) => {
+    const x = e.clientX;
+    const y = e.clientY;
+
+    // استخدام requestAnimationFrame لأداء أفضل وسلاسة عالية
+    window.requestAnimationFrame(() => {
+        cursor.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        follower.style.transform = `translate3d(${x - 20}px, ${y - 20}px, 0)`;
+    });
+});
+
+document.addEventListener('mousedown', () => cursor.classList.add('active'));
+document.addEventListener('mouseup', () => cursor.classList.remove('active'));
+	</script>
 </body>
 </html>
+
 
 
