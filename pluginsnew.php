@@ -139,10 +139,13 @@ ob_clean();
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Orbitron:wght@600;900&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
 		/* إخفاء الماوس الأصلي */
-
-
 /* إخفاء الماوس الأصلي */
 html, body {
+    cursor: none !important;
+}
+
+/* تأكد أن الروابط والأزرار لا تظهر مؤشر اليد القديم */
+a, button, input, textarea {
     cursor: none !important;
 }
 
@@ -151,9 +154,9 @@ html, body {
     top: 0;
     left: 0;
     pointer-events: none;
-    z-index: 999999; /* أعلى قيمة ممكنة لضمان الظهور فوق الكل */
+    z-index: 99999999; /* قيمة ضخمة لتجاوز كل طبقات الواجهة */
     border-radius: 50%;
-    opacity: 0; /* سنظهره بالجافا سكريبت عند أول حركة */
+    opacity: 0;
     transition: opacity 0.3s ease;
 }
 
@@ -170,13 +173,26 @@ html, body {
     border: 1px solid #ff0000;
     background-color: rgba(255, 0, 0, 0.1);
     box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+    /* إضافة علامة "+" في السنتر لزيادة الاحترافية */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#hacker-follower::after {
+    content: '+';
+    color: rgba(255, 0, 0, 0.5);
+    font-size: 14px;
 }
 
 /* تأثير عند الضغط */
 .cursor-active {
-    transform: scale(1.5) !important;
+    transform: scale(0.7) !important;
     background-color: #fff !important;
-}        :root { --main-red: #ff0000; --bg: #030303; --panel: #0d0d0d; --green: #00ff41; --gold: #ffd700; }
+    box-shadow: 0 0 20px #fff !important;
+}
+
+        :root { --main-red: #ff0000; --bg: #030303; --panel: #0d0d0d; --green: #00ff41; --gold: #ffd700; }
         
         html, body { height: 100%; margin: 0; padding: 0; overflow: hidden; background: var(--bg); color: #e0e0e0; font-family: 'Fira Code', 'Inter', monospace; }
         .app-shell { display: flex; flex-direction: column; height: 100vh; width: 100vw; position: fixed; top: 0; left: 0; z-index: 9999; }
@@ -346,26 +362,40 @@ html, body {
 const cursor = document.getElementById('hacker-cursor');
 const follower = document.getElementById('hacker-follower');
 
-document.addEventListener('mousemove', (e) => {
-    const x = e.clientX;
-    const y = e.clientY;
+let mouseX = 0, mouseY = 0;
+let cursorX = 0, cursorY = 0;
+let followerX = 0, followerY = 0;
 
-    // إظهار الماوس عند أول حركة
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    
+    // إظهار العناصر عند أول حركة
     cursor.style.opacity = "1";
     follower.style.opacity = "1";
-
-    // التحريك باستخدام translate3d للأداء العالي
-    cursor.style.transform = `translate3d(${x - 5}px, ${y - 5}px, 0)`;
-    
-    // الدائرة تتبع بتأخير بسيط جداً لسلاسة الحركة
-    setTimeout(() => {
-        follower.style.transform = `translate3d(${x - 20}px, ${y - 20}px, 0)`;
-    }, 40);
 });
 
+function animate() {
+    // تنعيم حركة الدائرة الملاحقة (Lerp Effect)
+    followerX += (mouseX - followerX) * 0.15;
+    followerY += (mouseY - followerY) * 0.15;
+
+    cursor.style.transform = `translate3d(${mouseX - 5}px, ${mouseY - 5}px, 0)`;
+    follower.style.transform = `translate3d(${followerX - 20}px, ${followerY - 20}px, 0)`;
+
+    requestAnimationFrame(animate);
+}
+
+// بدء حلقة التحريك
+animate();
+
+// تأثير الضغط
+document.addEventListener('mousedown', () => cursor.classList.add('cursor-active'));
+document.addEventListener('mouseup', () => cursor.classList.remove('cursor-active'));
 	</script>
 </body>
 </html>
+
 
 
 
