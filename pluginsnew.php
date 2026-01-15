@@ -139,9 +139,7 @@ ob_clean();
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Orbitron:wght@600;900&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
 		/* إخفاء الماوس الأصلي */
-html, body {
-    cursor: none !important;
-}
+
 
 /* النقطة الحمراء المركزية */
 .cursor {
@@ -375,6 +373,7 @@ document.addEventListener('mouseup', () => cursor.classList.remove('active'));
 	</script>
 </body>
 </html>
+
 
 
 
